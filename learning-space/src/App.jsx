@@ -14,7 +14,7 @@ import KelasFavorit from './pages/KelasFavorit.jsx'
 import KelasZoom from './pages/KelasZoom.jsx'
 import Profil from './pages/Profil.jsx'
 import EditProfil from './pages/EditProfil.jsx'
-import AnalitikProgress from './pages/AnalitikProgress.jsx'
+import AnalitikProgress from './pages/Analitikprogress.jsx'
 
 function App() {
   return (
