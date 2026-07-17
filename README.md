@@ -1,7 +1,5 @@
 # Learning Space
 
-Project PemWeb
-
 ## 👥 Tim
 | Bagian | Nama |
 |--------|------|
