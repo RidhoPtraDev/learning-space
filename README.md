@@ -6,7 +6,7 @@ Project PemWeb
 | Bagian | Nama |
 |--------|------|
 | Backend, Database | Ridho Putra Aulia |
-| Frontend User | Arviandra Deska |
+| Frontend User | Arviandra Deska Amatori |
 | UI/UX | Muhammad Lukman Abdul Rafif |
 
 ## 🛠️ Teknologi yang Digunakan
