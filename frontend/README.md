@@ -1,2 +1,7 @@
 # Frontend
-  PIC: Arviandra Deska Amatori
+   
+   ## Admin
+   PIC: Ridho Putra Aulia
+   
+   ## User
+   PIC: Arviandra Deska Amatori
