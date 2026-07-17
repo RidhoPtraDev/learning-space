@@ -1,2 +1,2 @@
 # Frontend
-  PIC: Arviandra Deska
+  PIC: Arviandra Deska Amatori
