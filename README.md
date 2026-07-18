@@ -1,47 +1,26 @@
-# Learning Space
+# UI/UX
 
-## 👥 Tim
-| Bagian | Nama |
-|--------|------|
-| Backend, Database | Ridho Putra Aulia |
-| Frontend User | Arviandra Deska Amatori |
-| UI/UX | Muhammad Lukman Abdul Rafif |
+Berisi desain antarmuka (UI) dan pengalaman pengguna (UX) untuk project Learning Space.
 
-## 🛠️ Teknologi yang Digunakan
+## 👤 PIC
 
-**Backend**
-- Node.js + Express
-- MySQL (database)
-- Sequelize (ORM)
-- JSON Web Token (JWT) — autentikasi
-- Bcrypt — enkripsi password
-- Multer — upload file
+| Bagian | PIC |
+|--------|-----|
+| UI/UX Design | Muhammad Lukman Abdul Rafif |
 
-**Frontend (User & Admin)**
-- React
-- Vite
-- React Router DOM
-- Axios
-- Bootstrap
+## 🛠️ Teknologi / Tools yang Digunakan
 
-## 📁 Struktur Folder
-- `backend/` - Server, API, dan koneksi database
-- `frontend/user/` - Tampilan aplikasi untuk user
-- `frontend/admin/` - Dashboard admin
-- `ui-ux/` - Desain, wireframe, dan assets
+| Tools | Fungsi |
+|-------|--------|
+| Figma | Desain UI, wireframe, prototyping, dan kolaborasi tim |
 
-## 🚀 Cara Menjalankan Project
+## 📁 Isi Folder
 
-### Backend
-```bash
-cd backend
-npm install
-npm run dev
-```
+Folder ini berisi:
+- Wireframe / mockup halaman
+- Desain UI final (high-fidelity)
+- Asset (icon, gambar, ilustrasi) yang digunakan di aplikasi
+- Link ke file Figma 
 
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
+## 🔗 Link Figma
+> https://www.figma.com/design/9YWUb4B2MCTzasAk0OHxvP/Untitled?node-id=0-1&p=f&t=SCJUFFjCALUvGAVe-0
