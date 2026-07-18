@@ -60,7 +60,7 @@ Setiap bagian dikerjakan di branch masing-masing agar branch `main` selalu beris
 | `backend` | Pengembangan API & database |
 | `frontend` | Pengembangan aplikasi admin & user |
 | `ui-ux` | Desain UI/UX |
-| `main` | Versi final/stabil (hasil merge dari branch di atas) |
+| `main` | Versi final |
 
 ## 🚀 Cara Menjalankan Project
 
