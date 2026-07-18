@@ -1,47 +1,46 @@
-# Learning Space
+# Frontend
 
-## 👥 Tim
-| Bagian | Nama |
-|--------|------|
-| Backend, Database | Ridho Putra Aulia |
+Berisi dua aplikasi frontend terpisah: **Admin** (dashboard admin) dan **User** (aplikasi untuk pengguna).
+
+## 👥 PIC
+
+| Bagian | PIC |
+|--------|-----|
+| Frontend Admin | Ridho Putra Aulia |
 | Frontend User | Arviandra Deska Amatori |
-| UI/UX | Muhammad Lukman Abdul Rafif |
 
 ## 🛠️ Teknologi yang Digunakan
 
-**Backend**
-- Node.js + Express
-- MySQL (database)
-- Sequelize (ORM)
-- JSON Web Token (JWT) — autentikasi
-- Bcrypt — enkripsi password
-- Multer — upload file
+Kedua aplikasi (Admin & User) dibangun dengan stack yang sama:
 
-**Frontend (User & Admin)**
-- React
-- Vite
-- React Router DOM
-- Axios
-- Bootstrap
+| Teknologi | Fungsi | Versi |
+|-----------|--------|-------|
+| React | Library utama untuk membangun UI | ^19.2 |
+| Vite | Build tool & dev server | ^8 |
+| React Router DOM | Routing / navigasi antar halaman | ^7 |
+| Axios | HTTP client untuk komunikasi ke backend/API | ^1 |
+| Bootstrap | Framework CSS untuk styling & layout | ^5.3 |
+| ESLint / Oxlint | Linter untuk menjaga kualitas kode | - |
 
 ## 📁 Struktur Folder
-- `backend/` - Server, API, dan koneksi database
-- `frontend/user/` - Tampilan aplikasi untuk user
-- `frontend/admin/` - Dashboard admin
-- `ui-ux/` - Desain, wireframe, dan assets
 
-## 🚀 Cara Menjalankan Project
+- `admin/` - Aplikasi dashboard admin (PIC: Ridho Putra Aulia)
+- `user/` - Aplikasi untuk pengguna (PIC: Arviandra Deska Amatori)
 
-### Backend
+## 🚀 Cara Menjalankan
+
+### Frontend Admin
 ```bash
-cd backend
+cd admin
 npm install
 npm run dev
 ```
 
-### Frontend
+### Frontend User
 ```bash
-cd frontend
+cd user
 npm install
 npm run dev
 ```
+
+> Pastikan backend (API) sudah berjalan terlebih dahulu agar data bisa dimuat dengan benar.
