@@ -1,47 +1,36 @@
-# Learning Space
+# Backend
 
-## 👥 Tim
-| Bagian | Nama |
-|--------|------|
-| Backend, Database | Ridho Putra Aulia |
-| Frontend User | Arviandra Deska Amatori |
-| UI/UX | Muhammad Lukman Abdul Rafif |
+PIC: Ridho Putra Aulia
+
+Berisi source code API (server) dan database untuk project Learning Space.
 
 ## 🛠️ Teknologi yang Digunakan
 
-**Backend**
-- Node.js + Express
-- MySQL (database)
-- Sequelize (ORM)
-- JSON Web Token (JWT) — autentikasi
-- Bcrypt — enkripsi password
-- Multer — upload file
-
-**Frontend (User & Admin)**
-- React
-- Vite
-- React Router DOM
-- Axios
-- Bootstrap
+| Teknologi | Fungsi | Kategori |
+|-----------|--------|----------|
+| Node.js | Runtime JavaScript untuk menjalankan server | Runtime |
+| Express | Framework untuk membangun REST API | Framework |
+| MySQL | Database relasional untuk menyimpan seluruh data aplikasi | Database |
+| Sequelize | ORM (Object Relational Mapping) untuk koneksi & query ke MySQL | ORM |
+| JSON Web Token (JWT) | Autentikasi & otorisasi user (login, sesi) | Auth |
+| Bcrypt | Enkripsi/hashing password agar aman tersimpan di database | Security |
+| Multer | Menangani upload file (gambar, dokumen, dll) dari client | File Handling |
 
 ## 📁 Struktur Folder
-- `backend/` - Server, API, dan koneksi database
-- `frontend/user/` - Tampilan aplikasi untuk user
-- `frontend/admin/` - Dashboard admin
-- `ui-ux/` - Desain, wireframe, dan assets
 
-## 🚀 Cara Menjalankan Project
+- `api/` - Source code backend (server, routes, controller, model, dll)
+- `database/` - File backup/export database (.sql)
 
-### Backend
+## 🚀 Cara Menjalankan
+
+### 1. Setup Database
+Import file `.sql` yang ada di folder `database/` ke MySQL lokal (lihat detail di dalam folder tersebut).
+
+### 2. Jalankan API
 ```bash
-cd backend
+cd api
 npm install
 npm run dev
 ```
 
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
+> Pastikan file konfigurasi koneksi database (.env) sudah diisi sesuai environment lokal masing-masing sebelum menjalankan aplikasi.
