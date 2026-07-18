@@ -1,8 +1,12 @@
 # Backend
 
-PIC: Ridho Putra Aulia
-
 Berisi source code API (server) dan database untuk project Learning Space.
+
+## 👤 PIC
+
+| Bagian | PIC |
+|--------|-----|
+| Backend & Database | Ridho Putra Aulia |
 
 ## 🛠️ Teknologi yang Digunakan
 
