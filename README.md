@@ -1,46 +1,88 @@
-# Frontend
+# Learning Space
 
-Berisi dua aplikasi frontend terpisah: **Admin** (dashboard admin) dan **User** (aplikasi untuk pengguna).
+Project PemWeb
 
-## 👥 PIC
+## 👥 Tim
 
 | Bagian | PIC |
 |--------|-----|
-| Frontend Admin | Ridho Putra Aulia |
+| Backend & Database | Ridho Putra Aulia |
 | Frontend User | Arviandra Deska Amatori |
+| UI/UX | Muhammad Lukman Abdul Rafif |
 
 ## 🛠️ Teknologi yang Digunakan
 
-Kedua aplikasi (Admin & User) dibangun dengan stack yang sama:
+### Backend
+| Teknologi | Fungsi |
+|-----------|--------|
+| Node.js | Runtime JavaScript untuk menjalankan server |
+| Express | Framework untuk membangun REST API |
+| JSON Web Token (JWT) | Autentikasi & otorisasi user (login, sesi) |
+| Bcrypt | Enkripsi/hashing password |
+| Multer | Menangani upload file (gambar, dokumen, dll) |
 
-| Teknologi | Fungsi | Versi |
-|-----------|--------|-------|
-| React | Library utama untuk membangun UI | ^19.2 |
-| Vite | Build tool & dev server | ^8 |
-| React Router DOM | Routing / navigasi antar halaman | ^7 |
-| Axios | HTTP client untuk komunikasi ke backend/API | ^1 |
-| Bootstrap | Framework CSS untuk styling & layout | ^5.3 |
-| ESLint / Oxlint | Linter untuk menjaga kualitas kode | - |
+### Database
+| Teknologi | Fungsi |
+|-----------|--------|
+| MySQL | Database relasional untuk menyimpan seluruh data aplikasi |
+| Sequelize | ORM (Object Relational Mapping) untuk koneksi & query dari Node.js ke MySQL |
+
+### Frontend (Admin & User)
+| Teknologi | Fungsi |
+|-----------|--------|
+| React | Library utama untuk membangun antarmuka (UI) |
+| Vite | Build tool & dev server untuk React |
+| React Router DOM | Routing / navigasi antar halaman |
+| Axios | HTTP client untuk komunikasi ke backend/API |
+| Bootstrap | Framework CSS untuk styling & layout |
+
+### UI/UX Design
+| Tools | Fungsi |
+|-------|--------|
+| Figma | Desain UI, wireframe, dan prototyping |
 
 ## 📁 Struktur Folder
 
-- `admin/` - Aplikasi dashboard admin (PIC: Ridho Putra Aulia)
-- `user/` - Aplikasi untuk pengguna (PIC: Arviandra Deska Amatori)
+| Folder | Isi | PIC |
+|--------|-----|-----|
+| `backend/api/` | Server & REST API | Ridho Putra Aulia |
+| `backend/database/` | Backup/export database (.sql) | Ridho Putra Aulia |
+| `frontend/admin/` | Dashboard admin | Ridho Putra Aulia |
+| `frontend/user/` | Aplikasi untuk user | Arviandra Deska Amatori |
+| `ui-ux/` | Desain, wireframe, dan assets | Muhammad Lukman Abdul Rafif |
 
-## 🚀 Cara Menjalankan
+## 🌿 Alur Kerja (Branch)
+
+Setiap bagian dikerjakan di branch masing-masing agar branch `main` selalu berisi versi yang stabil:
+
+| Branch | Digunakan Untuk |
+|--------|------------------|
+| `backend` | Pengembangan API & database |
+| `frontend` | Pengembangan aplikasi admin & user |
+| `ui-ux` | Desain UI/UX |
+| `main` | Versi final |
+
+## 🚀 Cara Menjalankan Project
+
+### Backend
+```bash
+cd backend/api
+npm install
+npm run dev
+```
 
 ### Frontend Admin
 ```bash
-cd admin
+cd frontend/admin
 npm install
 npm run dev
 ```
 
 ### Frontend User
 ```bash
-cd user
+cd frontend/user
 npm install
 npm run dev
 ```
 
-> Pastikan backend (API) sudah berjalan terlebih dahulu agar data bisa dimuat dengan benar.
+> Pastikan database sudah diimport dan file `.env` sudah dikonfigurasi sebelum menjalankan backend.
