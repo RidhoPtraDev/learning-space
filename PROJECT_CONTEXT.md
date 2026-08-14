@@ -130,3 +130,14 @@ git push origin frontend/arviandra-deska
 - **[`CONTRIBUTING.md`](file:///d:/Project%20PemWeb/CONTRIBUTING.md)**: Panduan Detail Kontribusi & Code of Conduct
 - **[`CHANGELOG.md`](file:///d:/Project%20PemWeb/CHANGELOG.md)**: Catatan Riwayat Rilis & Update Perfitur
 - **[`learning-space-api/schema.sql`](file:///d:/Project%20PemWeb/learning-space-api/schema.sql)**: Export Struktur Tabel SQL Database
+
+---
+
+## 🌐 9. Catatan Deployment & Konfigurasi Lintas Domain (CORS & Tunnels)
+
+1. **Vercel Frontend Deployment**:
+   - `learning-space` (User Frontend) ter-deploy di Vercel dengan rewrites `vercel.json` SPA routing.
+   - Variabel lingkungan `VITE_API_URL` mengarah ke publik tunnel backend (`https://<subdomain>.loca.lt/api`).
+2. **CORS & Localtunnel Interstitial Bypass**:
+   - Backend `server.js` mengonfigurasi CORS dengan `allowedHeaders`: `['Content-Type', 'Authorization', 'bypass-tunnel-reminder', 'Cache-Control', 'Pragma']`.
+   - Interceptor Axios otomatis menyisipkan header `bypass-tunnel-reminder: true` untuk melewati halaman peringatan interstitial localtunnel secara transparan.

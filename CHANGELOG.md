@@ -9,8 +9,18 @@ dan project ini menggunakan [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+---
+
+## [1.3.0] — 2026-08-14
+
 ### Added
-- Setup struktur repository GitHub profesional (README, CONTRIBUTING, issue templates)
+- Konfigurasi `vercel.json` SPA rewrites untuk `learning-space` frontend user deployment.
+- Header `bypass-tunnel-reminder` pada Axios interceptors untuk transparansi request localtunnel.
+
+### Fixed
+- Perbaikan CORS preflight blocking di `learning-space-api/server.js` dengan menyertakan `Cache-Control` dan `Pragma` pada `allowedHeaders`.
+- Refactoring `AdminDashboard.jsx` untuk membersihkan Vite HMR Fast Refresh warning (pencabutan export konstanta `adminMenuItems`).
+- Optimasi siklus `useEffect` dan `fetchSemua` pada Ringkasan Dashboard Admin.
 
 ---
 
