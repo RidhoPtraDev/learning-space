@@ -441,7 +441,7 @@ export default function AdminDashboard() {
       .finally(() => setLoadKelas(false))
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const fetchSemua = useCallback((currentRange) => {
+  const fetchSemua = (currentRange) => {
     const ts = Date.now()
     setLoadAkt(true)
     setLoadKelas(true)
@@ -453,14 +453,14 @@ export default function AdminDashboard() {
       .finally(() => setLoadSum(false))
 
     fetchDiagram(currentRange)
-  }, [fetchDiagram]) // eslint-disable-line react-hooks/exhaustive-deps
+  }
 
   // Load saat pertama mount dan saat range berubah
   useEffect(() => {
     fetchSemua(range)
-  }, [range, fetchSemua])
+  }, [range])
 
-  // Auto-refresh diagram dan summary setiap 10 detik — tanpa loading spinner supaya tidak kedip
+  // Auto-refresh diagram dan summary setiap 10 detik
   useEffect(() => {
     const interval = setInterval(() => {
       const ts = Date.now()
