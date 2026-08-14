@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import ilustrasiZoom from '../assets/ilustrasi-zoom.png'
@@ -26,17 +26,12 @@ const menuItems = [
   { key: 'reminder',  label: 'Reminder',           path: '/reminder',  icon: <IconReminder /> },
 ]
 
-
-
 export default function KelasZoom() {
   const navigate = useNavigate()
   const [activeMenu, setActiveMenu] = useState('zoom')
   const [meetings,   setMeetings]   = useState([])
   const [loading,    setLoading]    = useState(true)
   const [errorMsg,   setErrorMsg]   = useState('')
-
-  const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
-  const userName   = storedUser?.nama || 'Pengguna'
 
   useEffect(() => {
     const fetch = async () => {

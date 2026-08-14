@@ -17,7 +17,7 @@
 
 ## 🏗️ 2. Arsitektur Teknis & Tech Stack
 
-```
+```text
                                ┌──────────────────────────┐
                                │  learning-space (User)   │ (React 19 + Vite 8)
                                │  http://localhost:5173   │
@@ -36,7 +36,7 @@
 ```
 
 | Layer | Teknologi Utama | Keterangan & Library Pendukung |
-|---|---|---|
+| --- | --- | --- |
 | **Frontend User** | React 19, Vite 8 | React Router v7, Axios, Pure CSS Design System |
 | **Frontend Admin** | React 19, Vite 8 | React Router v7, Axios, Sticky 3-Column Layout |
 | **Backend API** | Node.js 22, Express 5 | Sequelize ORM, Multer, Nodemailer, bcryptjs, jsonwebtoken |
@@ -50,7 +50,7 @@
 Sistem versi kontrol menggunakan strategi **Git Flow** yang diperluas dengan konvensi nama branch pengembang:
 
 | Komponen / Peran | Penanggung Jawab | Branch GitHub | Tanggung Jawab Utama |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 🎨 **UI / UX Design** | **Muhammad Lukman** | [`ui-ux/muhammad-lukman`](https://github.com/RidhoPtraDev/learning-space/tree/ui-ux/muhammad-lukman) | Design System, Asset Ikon, Layout Spec, Prototyping |
 | 💻 **Frontend User** | **Arviandra Deska** | [`frontend/arviandra-deska`](https://github.com/RidhoPtraDev/learning-space/tree/frontend/arviandra-deska) | Pengalaman Pengguna, Halaman Siswa, Integrasi API User |
 | ⚙️ **Backend API** | **Ridho Putra Aulia** | [`backend/ridho-putra`](https://github.com/RidhoPtraDev/learning-space/tree/backend/ridho-putra) | REST API Endpoints, Middleware, Auth JWT, SMTP Mailer |
