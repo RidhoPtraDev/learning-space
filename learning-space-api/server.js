@@ -19,7 +19,11 @@ require('./models/Reminder')
 require('./models/PasswordResetOtp')
 
 const app = express()
-app.use(cors())
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'bypass-tunnel-reminder'],
+}))
 app.use(express.json())
 
 // Serve file upload (icon kelas, ilustrasi materi) sebagai static file,
