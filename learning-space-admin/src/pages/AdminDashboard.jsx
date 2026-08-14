@@ -448,7 +448,7 @@ export default function AdminDashboard() {
     setLoadSum(true)
 
     api.get('/admin/summary', { params: { _t: ts }, ...noCache })
-      .then(r => setSummary(r.data.summary))
+      .then(r => setSummary(r.data?.summary || r.data || { totalUser:0, totalKelas:0, totalMateri:0, totalZoom:0 }))
       .catch(err => { console.error('Error fetching admin summary:', err) })
       .finally(() => setLoadSum(false))
 
