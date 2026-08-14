@@ -23,7 +23,9 @@ app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'bypass-tunnel-reminder', 'Cache-Control', 'Pragma'],
+  credentials: true,
 }))
+app.options('*', cors())
 app.use(express.json())
 
 // Serve file upload (icon kelas, ilustrasi materi) sebagai static file,
