@@ -22,7 +22,7 @@ const app = express()
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'bypass-tunnel-reminder'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'bypass-tunnel-reminder', 'Cache-Control', 'Pragma'],
 }))
 app.use(express.json())
 
