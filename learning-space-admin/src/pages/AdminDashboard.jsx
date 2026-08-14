@@ -15,7 +15,7 @@ function IconKeluar()   { return <svg width="22" height="22" viewBox="0 0 24 24"
 function IconSearch()   { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> }
 
 // ── MENU SIDEBAR ──────────────────────────────────────────────
-export const adminMenuItems = [
+const adminMenuItems = [
   { key: 'ringkasan', label: 'Ringkasan',      path: '/',          icon: <IconRingkasan /> },
   { key: 'status-user', label: 'Status User',  path: '/status-user',icon: <IconUser /> },
   { key: 'kelas',     label: 'Kelas & Materi', path: '/kelas',     icon: <IconKelas /> },
