@@ -20,12 +20,11 @@ require('./models/PasswordResetOtp')
 
 const app = express()
 app.use(cors({
-  origin: '*',
+  origin: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'bypass-tunnel-reminder', 'Cache-Control', 'Pragma'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'bypass-tunnel-reminder', 'Cache-Control', 'Pragma', 'ngrok-skip-browser-warning'],
   credentials: true,
 }))
-app.options('*', cors())
 app.use(express.json())
 
 // Serve file upload (icon kelas, ilustrasi materi) sebagai static file,
