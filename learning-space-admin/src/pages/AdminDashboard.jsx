@@ -455,16 +455,10 @@ export default function AdminDashboard() {
     fetchDiagram(currentRange)
   }, [fetchDiagram]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Load saat pertama mount
+  // Load saat pertama mount dan saat range berubah
   useEffect(() => {
     fetchSemua(range)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  // Re-fetch diagram saat range berubah
-  useEffect(() => {
-    setLoadAkt(true)
-    fetchDiagram(range)
-  }, [range]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [range, fetchSemua])
 
   // Auto-refresh diagram dan summary setiap 10 detik — tanpa loading spinner supaya tidak kedip
   useEffect(() => {
@@ -472,16 +466,18 @@ export default function AdminDashboard() {
       const ts = Date.now()
       api.get('/admin/diagram/aktivitas', { params: { range, _t: ts }, ...noCache })
         .then(r => setDiagAkt(r.data.data || []))
-        .catch(() => {})
+        .catch(err => console.error('Error auto-refresh diagAkt:', err))
       api.get('/admin/diagram/kelas', { params: { _t: ts }, ...noCache })
         .then(r => setDiagKelas(r.data.data || []))
-        .catch(() => {})
+        .catch(err => console.error('Error auto-refresh diagKelas:', err))
       api.get('/admin/summary', { params: { _t: ts }, ...noCache })
-        .then(r => setSummary(r.data.summary))
-        .catch(() => {})
+        .then(r => {
+          if (r.data?.summary) setSummary(r.data.summary)
+        })
+        .catch(err => console.error('Error auto-refresh summary:', err))
     }, 10000)
     return () => clearInterval(interval)
-  }, [range]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [range])
 
   const cards = [
     { label:'Total User',         value: summary.totalUser,   color:'#0066FF', icon:'👤' },
