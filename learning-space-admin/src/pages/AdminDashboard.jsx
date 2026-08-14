@@ -449,7 +449,7 @@ export default function AdminDashboard() {
 
     api.get('/admin/summary', { params: { _t: ts }, ...noCache })
       .then(r => setSummary(r.data.summary))
-      .catch(() => {})
+      .catch(err => { console.error('Error fetching admin summary:', err) })
       .finally(() => setLoadSum(false))
 
     fetchDiagram(currentRange)
