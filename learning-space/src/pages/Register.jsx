@@ -44,7 +44,7 @@ export default function Register() {
       })
       setLoading(false)
       setSuccess(true)
-      setTimeout(() => navigate('/login'), 1800)
+      setTimeout(() => navigate('/verifikasi-otp', { state: { email: form.email } }), 1800)
     } catch (err) {
       setLoading(false)
       const msg = err.response?.data?.message || 'Terjadi kesalahan, coba lagi'
@@ -96,8 +96,8 @@ export default function Register() {
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
               </div>
-              <h3 style={{ color: '#111', fontWeight: 700, marginBottom: 8 }}>Akun Berhasil Dibuat!</h3>
-              <p style={{ color: '#555', fontSize: '0.9rem' }}>Mengarahkan ke halaman login...</p>
+              <h3 style={{ color: '#111', fontWeight: 700, marginBottom: 8 }}>Registrasi Berhasil!</h3>
+              <p style={{ color: '#555', fontSize: '0.85rem', lineHeight: 1.5, textAlign: 'center', marginBottom: 12 }}>Kode OTP telah dikirim ke email Anda. Silakan cek inbox atau folder Spam. Mengarahkan Anda ke halaman verifikasi...</p>
               <div style={styles.progressBar}><div style={styles.progressFill} /></div>
             </div>
           ) : (

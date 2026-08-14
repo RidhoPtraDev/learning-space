@@ -1,16 +1,50 @@
-# React + Vite
+# Frontend Admin — LearningSpace
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Dashboard admin untuk platform LearningSpace, dibangun dengan **React 19 + Vite 8**.
 
-Currently, two official plugins are available:
+## 🚀 Menjalankan Lokal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev     # development server → http://localhost:5174
+npm run build   # production build
+npm run preview # preview build lokal
+```
 
-## React Compiler
+## 📁 Struktur
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+src/
+├── api/          ← Axios instance admin (baseURL, interceptors)
+├── assets/       ← Asset admin
+└── pages/        ← Halaman-halaman admin
+    ├── LoginAdmin.jsx
+    ├── AdminDashboard.jsx   ← Layout + Dashboard utama
+    ├── StatusUser.jsx
+    ├── LogAktifitas.jsx
+    ├── KelasAdmin.jsx
+    ├── KelasDetailAdmin.jsx
+    ├── KelasMateri.jsx
+    ├── ZoomMeetingAdmin.jsx
+    ├── TestimoniAdmin.jsx
+    ├── LayananAdmin.jsx
+    └── ProfilAdmin.jsx
+```
 
-## Expanding the Oxlint configuration
+## ⚙️ Konfigurasi
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+API base URL dikonfigurasi di `src/api/axios.js`.
+
+## 🔑 Autentikasi Admin
+
+- Token JWT admin disimpan di `sessionStorage` dengan key `token`
+- Data admin disimpan di `sessionStorage` dengan key `user`
+- Session habis saat browser/tab ditutup (by design, lebih aman untuk admin panel)
+
+## 🏗️ AdminLayout
+
+Semua halaman admin menggunakan komponen `AdminLayout` yang diekspor dari `AdminDashboard.jsx`.
+
+Props `AdminLayout`:
+- `activeKey` — string, menentukan menu sidebar yang aktif
+- `rightPanel` — boolean (default: `true`), tampilkan/sembunyikan panel kanan

@@ -37,6 +37,13 @@ const User = sequelize.define('User', {
     allowNull: false,
     defaultValue: 'user',
   },
+  isBanned: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
+}, {
+  paranoid: true,
 })
 
 module.exports = User

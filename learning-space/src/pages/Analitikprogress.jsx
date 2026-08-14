@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
-import avatarDefault from '../assets/avatar-default.png'
 import api from '../api/axios'
+import RightSidebar from '../components/RightSidebar.jsx'
+import BackButton from '../components/BackButton.jsx'
+import ilustrasiAnalitik from '../assets/ilustrasi-analitik.png'
 
 // ── ICON COMPONENTS (konsisten dengan Dashboard.jsx) ───────────
 function IconKelas()    { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> }
@@ -10,6 +12,7 @@ function IconRiwayat()  { return <svg width="22" height="22" viewBox="0 0 24 24"
 function IconFavorit()  { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> }
 function IconZoom()     { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> }
 function IconAnalitik() { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> }
+function IconReminder() { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> }
 function IconKeluar()   { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> }
 
 const menuItems = [
@@ -18,48 +21,10 @@ const menuItems = [
   { key: 'favorit',  label: 'Kelas Favorit',       path: '/favorit',   icon: <IconFavorit /> },
   { key: 'zoom',     label: 'Kelas Zoom Meeting',  path: '/zoom',      icon: <IconZoom /> },
   { key: 'analitik', label: 'Analitik Progress',   path: '/analitik',  icon: <IconAnalitik /> },
+  { key: 'reminder',  label: 'Reminder',            path: '/reminder',   icon: <IconReminder /> },
 ]
 
-// ── MINI CALENDAR (sama persis seperti Dashboard.jsx) ──────────
-function MiniCalendar() {
-  const today = new Date()
-  const [current, setCurrent] = useState({ year: today.getFullYear(), month: today.getMonth() })
-  const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']
-  const dayNames = ['Sen','Sel','Rab','Kam','Jum','Sab','Ming']
-  const firstDay = new Date(current.year, current.month, 1).getDay()
-  const offset = firstDay === 0 ? 6 : firstDay - 1
-  const daysInMonth = new Date(current.year, current.month + 1, 0).getDate()
-  const prev = () => setCurrent(c => c.month === 0 ? { year: c.year-1, month: 11 } : { ...c, month: c.month-1 })
-  const next = () => setCurrent(c => c.month === 11 ? { year: c.year+1, month: 0 } : { ...c, month: c.month+1 })
-  const cells = []
-  for (let i = 0; i < offset; i++) cells.push(null)
-  for (let d = 1; d <= daysInMonth; d++) cells.push(d)
-  const isToday = d => d === today.getDate() && current.month === today.getMonth() && current.year === today.getFullYear()
-  return (
-    <div style={cal.wrap}>
-      <div style={cal.header}>
-        <button onClick={prev} style={cal.navBtn}>‹</button>
-        <span style={cal.monthLabel}>{monthNames[current.month]} {current.year}</span>
-        <button onClick={next} style={cal.navBtn}>›</button>
-      </div>
-      <hr style={{ border: 'none', borderTop: '1px solid #e5e7eb', margin: '8px 0' }} />
-      <div style={cal.grid}>
-        {dayNames.map(d => <div key={d} style={cal.dayName}>{d}</div>)}
-        {cells.map((d, i) => <div key={i} style={d && isToday(d) ? cal.today : cal.day}>{d || ''}</div>)}
-      </div>
-    </div>
-  )
-}
-const cal = {
-  wrap: { backgroundColor: '#fff', borderRadius: '16px', padding: '16px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' },
-  header: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
-  navBtn: { background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', color: '#555', padding: '0 4px' },
-  monthLabel: { fontWeight: 700, fontSize: '0.9rem', color: '#111' },
-  grid: { display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px', textAlign: 'center' },
-  dayName: { fontSize: '0.72rem', color: '#888', fontWeight: 600, padding: '4px 0' },
-  day: { fontSize: '0.8rem', color: '#444', padding: '5px 2px', borderRadius: '6px' },
-  today: { fontSize: '0.8rem', color: '#fff', padding: '5px 2px', borderRadius: '6px', backgroundColor: '#0066FF', fontWeight: 700 },
-}
+
 
 // ── DIAGRAM BATANG — Aktivitas 7 hari ──────────────────────────
 function DiagramBatang({ data, loading }) {
@@ -244,9 +209,13 @@ export default function AnalitikProgress() {
       <main style={s.main}>
         <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:24, flexWrap:'wrap', gap:8 }}>
           <div>
+            <BackButton />
             <h1 style={s.pageTitle}>Analitik Progress</h1>
             <p style={s.pageDesc}>Pantau perkembangan belajarmu setiap hari.</p>
           </div>
+          <img src={ilustrasiAnalitik} alt="ilustrasi"
+            style={{ width: 180, objectFit: 'contain', flexShrink: 0 }}
+            onError={e => e.target.style.display = 'none'} />
         </div>
 
         {/* Ringkasan Hari Ini */}
@@ -346,18 +315,7 @@ export default function AnalitikProgress() {
       </main>
 
       {/* ── RIGHT PANEL ── */}
-      <aside style={s.rightPanel}>
-        <div style={s.profileCard}>
-          <div style={s.avatarWrap}>
-            <img src={storedUser?.foto || avatarDefault} alt="Avatar" style={s.avatar}
-              onError={e => { e.target.src = avatarDefault }} />
-          </div>
-          <p style={s.profileName}>{userName}</p>
-          <p style={s.profileRole}>Student</p>
-          <button style={s.profileBtn} onClick={() => navigate('/profil')}>Profil</button>
-        </div>
-        <MiniCalendar />
-      </aside>
+      <RightSidebar />
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
@@ -387,18 +345,10 @@ const s = {
   keluarLabel:{ color:'#ff4d4d', fontWeight:600, fontSize:'0.92rem' },
 
   main: { flex:1, padding:'36px 32px', overflowY:'auto', animation:'fadeInUp 0.5s ease both', display:'flex', flexDirection:'column', gap:18 },
-  pageTitle: { fontSize:'1.7rem', fontWeight:800, color:'#111', marginBottom:6 },
+  pageTitle: { fontSize:'2.2rem', fontWeight:800, color:'#111', marginBottom:8 },
   pageDesc:  { color:'#666', fontSize:'0.92rem' },
 
   card: { backgroundColor:'#fff', borderRadius:16, padding:24, boxShadow:'0 2px 12px rgba(0,0,0,0.06)' },
   cardTitle: { fontSize:'1.02rem', fontWeight:800, color:'#111' },
   statBox: { backgroundColor:'#f9fafb', borderRadius:14, padding:'16px 18px', border:'1px solid #f0f0f0' },
-
-  rightPanel: { width:'280px', flexShrink:0, padding:'36px 20px', display:'flex', flexDirection:'column', gap:'20px' },
-  profileCard:{ backgroundColor:'#fff', borderRadius:'16px', padding:'24px 16px', textAlign:'center', boxShadow:'0 2px 12px rgba(0,0,0,0.06)' },
-  avatarWrap: { width:'90px', height:'90px', borderRadius:'50%', overflow:'hidden', margin:'0 auto 12px', backgroundColor:'#e5e7eb', display:'flex', alignItems:'center', justifyContent:'center' },
-  avatar:     { width:'100%', height:'100%', objectFit:'cover' },
-  profileName:{ fontWeight:700, fontSize:'1rem', color:'#111', marginBottom:'4px' },
-  profileRole:{ color:'#888', fontSize:'0.85rem', marginBottom:'16px' },
-  profileBtn: { border:'2px solid #0066FF', color:'#0066FF', backgroundColor:'transparent', borderRadius:'20px', padding:'6px 28px', fontWeight:700, fontSize:'0.9rem', cursor:'pointer', fontFamily:"'Poppins', sans-serif" },
 }

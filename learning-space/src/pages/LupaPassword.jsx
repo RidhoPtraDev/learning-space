@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import api from '../api/axios'
 
 export default function LupaPassword() {
   const navigate = useNavigate()
@@ -11,26 +12,31 @@ export default function LupaPassword() {
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [resendTimer, setResendTimer] = useState(0)
+  const [resetToken, setResetToken] = useState('')
 
   const otpRefs = useRef([])
 
   // ── STEP 1: Kirim Email ─────────────────────────────────────
-  const handleSendEmail = (e) => {
+  const handleSendEmail = async (e) => {
     e.preventDefault()
     if (!email.trim()) { setErrors({ email: 'Email wajib diisi' }); return }
     if (!/\S+@\S+\.\S+/.test(email)) { setErrors({ email: 'Format email tidak valid' }); return }
     setErrors({})
     setLoading(true)
-    setTimeout(() => {
+    try {
+      await api.post('/auth/forgot-password', { email })
       setLoading(false)
       setStep(2)
       startResendTimer()
-    }, 1300)
+    } catch (err) {
+      setLoading(false)
+      setErrors({ email: err.response?.data?.message || 'Gagal mengirim OTP reset password' })
+    }
   }
 
   // ── STEP 2: Verifikasi OTP ───────────────────────────────────
   const startResendTimer = () => {
-    setResendTimer(30)
+    setResendTimer(60)
     const interval = setInterval(() => {
       setResendTimer(t => {
         if (t <= 1) { clearInterval(interval); return 0 }
@@ -54,22 +60,35 @@ export default function LupaPassword() {
     }
   }
 
-  const handleVerifyOtp = (e) => {
+  const handleVerifyOtp = async (e) => {
     e.preventDefault()
     const code = otp.join('')
     if (code.length < 6) { setErrors({ otp: 'Masukkan 6 digit kode OTP' }); return }
     setErrors({})
     setLoading(true)
-    setTimeout(() => {
+    try {
+      const res = await api.post('/auth/verify-reset-otp', { email, otp: code })
       setLoading(false)
+      setResetToken(res.data.resetToken)
       setStep(3)
-    }, 1300)
+    } catch (err) {
+      setLoading(false)
+      setErrors({ otp: err.response?.data?.message || 'Kode OTP tidak valid atau kadaluarsa' })
+    }
   }
 
-  const handleResend = () => {
+  const handleResend = async () => {
     if (resendTimer > 0) return
-    setOtp(['', '', '', '', '', ''])
-    startResendTimer()
+    setLoading(true)
+    try {
+      await api.post('/auth/resend-reset-otp', { email })
+      setLoading(false)
+      setOtp(['', '', '', '', '', ''])
+      startResendTimer()
+    } catch (err) {
+      setLoading(false)
+      setErrors({ otp: err.response?.data?.message || 'Gagal mengirim ulang kode OTP' })
+    }
   }
 
   // ── STEP 3: Password Baru ────────────────────────────────────
@@ -82,15 +101,19 @@ export default function LupaPassword() {
     return e
   }
 
-  const handleResetPassword = (e) => {
+  const handleResetPassword = async (e) => {
     e.preventDefault()
     const e2 = validatePassword()
     if (Object.keys(e2).length > 0) { setErrors(e2); return }
     setLoading(true)
-    setTimeout(() => {
+    try {
+      await api.post('/auth/reset-password', { resetToken, passwordBaru: pass.baru })
       setLoading(false)
       setStep(4)
-    }, 1300)
+    } catch (err) {
+      setLoading(false)
+      setErrors({ baru: err.response?.data?.message || 'Gagal mengubah password' })
+    }
   }
 
   // ── STEPPER INDICATOR ────────────────────────────────────────

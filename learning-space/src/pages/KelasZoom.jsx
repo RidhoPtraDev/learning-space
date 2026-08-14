@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
-import avatarDefault from '../assets/avatar-default.png'
 import ilustrasiZoom from '../assets/ilustrasi-zoom.png'
 import api from '../api/axios'
+import RightSidebar from '../components/RightSidebar.jsx'
 
 function IconKelas()    { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> }
 function IconRiwayat()  { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> }
@@ -15,6 +15,7 @@ function IconClock()    { return <svg width="14" height="14" viewBox="0 0 24 24"
 function IconArrow()    { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#333" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg> }
 
 function IconAnalitik() { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg> }
+function IconReminder() { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> }
 
 const menuItems = [
   { key: 'kelas',   label: 'Kelas Pembelajaran', path: '/dashboard', icon: <IconKelas /> },
@@ -22,47 +23,10 @@ const menuItems = [
   { key: 'favorit', label: 'Kelas Favorit',       path: '/favorit',   icon: <IconFavorit /> },
   { key: 'zoom',    label: 'Kelas Zoom Meeting',  path: '/zoom',      icon: <IconZoom /> },
   { key: 'analitik', label: 'Analitik Progress',  path: '/analitik',  icon: <IconAnalitik /> },
+  { key: 'reminder',  label: 'Reminder',           path: '/reminder',  icon: <IconReminder /> },
 ]
 
-function MiniCalendar() {
-  const today = new Date()
-  const [current, setCurrent] = useState({ year: today.getFullYear(), month: today.getMonth() })
-  const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']
-  const dayNames = ['Sen','Sel','Rab','Kam','Jum','Sab','Ming']
-  const firstDay = new Date(current.year, current.month, 1).getDay()
-  const offset = firstDay === 0 ? 6 : firstDay - 1
-  const daysInMonth = new Date(current.year, current.month + 1, 0).getDate()
-  const prev = () => setCurrent(c => c.month === 0 ? { year: c.year-1, month: 11 } : { ...c, month: c.month-1 })
-  const next = () => setCurrent(c => c.month === 11 ? { year: c.year+1, month: 0 } : { ...c, month: c.month+1 })
-  const cells = []
-  for (let i = 0; i < offset; i++) cells.push(null)
-  for (let d = 1; d <= daysInMonth; d++) cells.push(d)
-  const isToday = d => d === today.getDate() && current.month === today.getMonth() && current.year === today.getFullYear()
-  return (
-    <div style={cal.wrap}>
-      <div style={cal.header}>
-        <button onClick={prev} style={cal.navBtn}>‹</button>
-        <span style={cal.monthLabel}>{monthNames[current.month]} {current.year}</span>
-        <button onClick={next} style={cal.navBtn}>›</button>
-      </div>
-      <hr style={{ border: 'none', borderTop: '1px solid #e5e7eb', margin: '8px 0' }} />
-      <div style={cal.grid}>
-        {dayNames.map(d => <div key={d} style={cal.dayName}>{d}</div>)}
-        {cells.map((d, i) => <div key={i} style={d && isToday(d) ? cal.today : cal.day}>{d || ''}</div>)}
-      </div>
-    </div>
-  )
-}
-const cal = {
-  wrap: { backgroundColor: '#fff', borderRadius: '16px', padding: '16px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' },
-  header: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
-  navBtn: { background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', color: '#555', padding: '0 4px' },
-  monthLabel: { fontWeight: 700, fontSize: '0.9rem', color: '#111' },
-  grid: { display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px', textAlign: 'center' },
-  dayName: { fontSize: '0.72rem', color: '#888', fontWeight: 600, padding: '4px 0' },
-  day: { fontSize: '0.8rem', color: '#444', padding: '5px 2px', borderRadius: '6px' },
-  today: { fontSize: '0.8rem', color: '#fff', padding: '5px 2px', borderRadius: '6px', backgroundColor: '#0066FF', fontWeight: 700 },
-}
+
 
 export default function KelasZoom() {
   const navigate = useNavigate()
@@ -226,23 +190,7 @@ export default function KelasZoom() {
       </main>
 
       {/* ── RIGHT PANEL ── */}
-      <aside style={s.rightPanel}>
-        <div style={s.profileCard}>
-          <div style={s.avatarWrap}>
-            <img src={storedUser?.foto || avatarDefault} alt="Avatar" style={s.avatar}
-              onError={e => { e.target.src = avatarDefault }} />
-            <div style={{ ...s.avatarFallback, display: 'none' }}>
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="#aaa">
-                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-              </svg>
-            </div>
-          </div>
-          <p style={s.profileName}>{userName}</p>
-          <p style={s.profileRole}>Student</p>
-          <button style={s.profileBtn} onClick={() => navigate('/profil')}>Profil</button>
-        </div>
-        <MiniCalendar />
-      </aside>
+      <RightSidebar />
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
@@ -292,13 +240,4 @@ const s = {
   badge: { display: 'flex', alignItems: 'center', gap: '6px', backgroundColor: '#0066FF', color: '#fff', borderRadius: '8px', padding: '6px 12px', fontSize: '0.8rem', fontWeight: 600, whiteSpace: 'nowrap' },
 
   joinBtn: { width: '40px', height: '40px', borderRadius: '50%', backgroundColor: '#FFD93D', border: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0, transition: 'transform 0.2s' },
-
-  rightPanel: { width: '280px', flexShrink: 0, padding: '36px 20px', display: 'flex', flexDirection: 'column', gap: '20px' },
-  profileCard: { backgroundColor: '#fff', borderRadius: '16px', padding: '24px 16px', textAlign: 'center', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' },
-  avatarWrap: { width: '90px', height: '90px', borderRadius: '50%', overflow: 'hidden', margin: '0 auto 12px', backgroundColor: '#e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  avatar: { width: '100%', height: '100%', objectFit: 'cover' },
-  avatarFallback: { width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: '#e5e7eb' },
-  profileName: { fontWeight: 700, fontSize: '1rem', color: '#111', marginBottom: '4px' },
-  profileRole: { color: '#888', fontSize: '0.85rem', marginBottom: '16px' },
-  profileBtn: { border: '2px solid #0066FF', color: '#0066FF', backgroundColor: 'transparent', borderRadius: '20px', padding: '6px 28px', fontWeight: 700, fontSize: '0.9rem', cursor: 'pointer', fontFamily: "'Poppins', sans-serif" },
 }

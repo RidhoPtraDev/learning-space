@@ -1,16 +1,48 @@
-# React + Vite
+# Frontend User — LearningSpace
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Antarmuka pengguna untuk platform LearningSpace, dibangun dengan **React 19 + Vite 8**.
 
-Currently, two official plugins are available:
+## 🚀 Menjalankan Lokal
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev     # development server → http://localhost:5173
+npm run build   # production build
+npm run preview # preview build lokal
+```
 
-## React Compiler
+## 📁 Struktur
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```
+src/
+├── api/          ← Axios instance (baseURL, interceptors)
+├── assets/       ← Gambar, ikon, ilustrasi
+├── components/   ← Komponen reusable (BackButton, RightSidebar)
+└── pages/        ← Halaman-halaman aplikasi
+    ├── Home.jsx
+    ├── Login.jsx
+    ├── Register.jsx
+    ├── VerifikasiOtp.jsx
+    ├── LupaPassword.jsx
+    ├── Dashboard.jsx
+    ├── KelasDetail.jsx
+    ├── MateriDetail.jsx
+    ├── KelasFavorit.jsx
+    ├── KelasZoom.jsx
+    ├── RiwayatBelajar.jsx
+    ├── Analitikprogress.jsx
+    ├── Reminder.jsx
+    ├── Profil.jsx
+    └── EditProfil.jsx
+```
 
-## Expanding the ESLint configuration
+## ⚙️ Konfigurasi
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+API base URL dikonfigurasi di `src/api/axios.js`.
+Untuk mengubah URL backend, edit file tersebut.
+
+## 🔑 Autentikasi
+
+- Token JWT disimpan di `localStorage` dengan key `token`
+- Data user disimpan di `localStorage` dengan key `user`
+- Semua request ke endpoint terproteksi otomatis menyertakan header `Authorization: Bearer <token>` via Axios interceptor

@@ -10,13 +10,14 @@ function IconKelas()    { return <svg width="22" height="22" viewBox="0 0 24 24"
 function IconZoom()     { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg> }
 function IconTestimoni(){ return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> }
 function IconLayanan()  { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> }
-function IconProfil()   { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> }
+function IconUser()     { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> }
 function IconKeluar()   { return <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> }
 function IconSearch()   { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> }
 
 // ── MENU SIDEBAR ──────────────────────────────────────────────
 export const adminMenuItems = [
   { key: 'ringkasan', label: 'Ringkasan',      path: '/',          icon: <IconRingkasan /> },
+  { key: 'status-user', label: 'Status User',  path: '/status-user',icon: <IconUser /> },
   { key: 'kelas',     label: 'Kelas & Materi', path: '/kelas',     icon: <IconKelas /> },
   { key: 'zoom',      label: 'Zoom Meeting',   path: '/zoom',      icon: <IconZoom /> },
   { key: 'testimoni', label: 'Testimoni',      path: '/testimoni', icon: <IconTestimoni /> },
@@ -465,7 +466,7 @@ export default function AdminDashboard() {
     fetchDiagram(range)
   }, [range]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Auto-refresh diagram setiap 15 detik — tanpa loading spinner supaya tidak kedip
+  // Auto-refresh diagram dan summary setiap 10 detik — tanpa loading spinner supaya tidak kedip
   useEffect(() => {
     const interval = setInterval(() => {
       const ts = Date.now()
@@ -478,7 +479,7 @@ export default function AdminDashboard() {
       api.get('/admin/summary', { params: { _t: ts }, ...noCache })
         .then(r => setSummary(r.data.summary))
         .catch(() => {})
-    }, 15000)
+    }, 10000)
     return () => clearInterval(interval)
   }, [range]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -593,7 +594,7 @@ const s = {
 
   chartCard:   { backgroundColor:'#fff', borderRadius:16, padding:24, boxShadow:'0 2px 12px rgba(0,0,0,0.06)' },
 
-  rightPanel:  { width:'280px', flexShrink:0, padding:'36px 20px', display:'flex', flexDirection:'column', gap:'20px' },
+  rightPanel:  { width:'280px', flexShrink:0, padding:'36px 20px', display:'flex', flexDirection:'column', gap:'20px', position:'sticky', top:0, height:'100vh', overflowY:'auto' },
   profileCard: { backgroundColor:'#fff', borderRadius:'16px', padding:'24px 16px', textAlign:'center', boxShadow:'0 2px 12px rgba(0,0,0,0.06)' },
   avatarWrap:  { width:'90px', height:'90px', borderRadius:'50%', overflow:'hidden', margin:'0 auto 12px', backgroundColor:'#e5e7eb', display:'flex', alignItems:'center', justifyContent:'center' },
   avatar:      { width:'100%', height:'100%', objectFit:'cover' },

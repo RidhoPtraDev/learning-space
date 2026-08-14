@@ -8,6 +8,9 @@ export default function LoginAdmin() {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
+  // Tampilkan pesan sesi habis kalau diarahkan dari interceptor 401
+  const isExpired = new URLSearchParams(window.location.search).get('reason') === 'expired'
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
@@ -46,6 +49,12 @@ export default function LoginAdmin() {
         <p style={s.subtitle}>Admin Panel</p>
 
         <form onSubmit={handleSubmit}>
+          {isExpired && (
+            <p style={{ color: '#d97706', fontSize: '0.85rem', marginBottom: '16px', backgroundColor: '#fffbeb', padding: '10px 12px', borderRadius: '8px', border: '1px solid #fde68a' }}>
+              ⏰ Sesi Anda telah berakhir. Silakan login kembali.
+            </p>
+          )}
+
           <label style={s.label}>Email</label>
           <input
             type="email"

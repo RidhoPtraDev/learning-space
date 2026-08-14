@@ -3,6 +3,7 @@ const Materi         = require('../models/Materi')
 const Kelas           = require('../models/Kelas')
 const { Op }          = require('sequelize')
 const sequelize        = require('../config/database')
+const { hitungStreak } = require('../utils/analitikHelper')
 
 // Estimasi durasi per jenis aktivitas (menit) — dipakai karena DB tidak
 // menyimpan durasi riil video/zoom yang ditonton
@@ -51,26 +52,7 @@ exports.getProgress = async (req, res) => {
     )
 
     // Streak — hitung mundur dari hari ini, berapa hari berturut-turut ada aktivitas
-    const tanggalAktif = new Set(
-      semuaRiwayat.map(r => {
-        const d = new Date(r.waktuAkses)
-        return `${d.getFullYear()}-${d.getMonth()}-${d.getDate()}`
-      })
-    )
-    let streak = 0
-    for (let i = 0; i < 365; i++) {
-      const cek = new Date(sekarang)
-      cek.setDate(cek.getDate() - i)
-      const key = `${cek.getFullYear()}-${cek.getMonth()}-${cek.getDate()}`
-      if (tanggalAktif.has(key)) {
-        streak++
-      } else if (i === 0) {
-        // Hari ini belum ada aktivitas — tetap lanjut cek kemarin
-        continue
-      } else {
-        break
-      }
-    }
+    const { streak, tanggalAktif } = await hitungStreak(userId, RiwayatBelajar)
 
     // ── Aktivitas Belajar 7 Hari Terakhir (diagram batang) ──────
     const tujuhHari = []
