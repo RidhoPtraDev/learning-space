@@ -44,7 +44,7 @@ dan project ini menggunakan [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Halaman `LupaPassword.jsx` dengan step-by-step flow (email → OTP → password baru)
 
 ### Changed
-- Migrasi SMTP email dari `learningspace.otp@gmail.com` ke `ridhoput568@gmail.com` dengan App Password baru
+- Migrasi SMTP email pengirim OTP dengan App Password baru
 - Sender name email tetap menampilkan "LearningSpace" di inbox penerima
 
 ### Fixed
