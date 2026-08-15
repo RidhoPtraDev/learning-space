@@ -49,19 +49,20 @@ app.use('/api/reminder', require('./routes/reminderRoutes'))
 
 const PORT = process.env.PORT || 5000
 
-sequelize.authenticate()
-  .then(() => {
-    console.log('✅ Database terkoneksi')
-    return sequelize.sync()
-  })
-  .then(() => {
-    console.log('✅Semua tabel sudah ter-sync')
-    app.listen(PORT, async () => {
-      console.log(`🚀 Server jalan di http://localhost:${PORT}`)
-      // Cek koneksi SMTP Gmail saat startup — error akan terlihat langsung di log
-      await verifySMTP()
+app.listen(PORT, () => {
+  console.log(`🚀 Server jalan di port ${PORT}`)
+  
+  sequelize.authenticate()
+    .then(() => {
+      console.log('✅ Database terkoneksi')
+      return sequelize.sync()
     })
-  })
-  .catch((err) => {
-    console.error('❌ Error:', err.message)
-  })
+    .then(() => {
+      console.log('✅ Semua tabel ter-sync')
+    })
+    .catch((err) => {
+      console.error('❌ Database error:', err.message)
+    })
+
+  verifySMTP().catch(err => console.error('SMTP verify error:', err.message))
+})
