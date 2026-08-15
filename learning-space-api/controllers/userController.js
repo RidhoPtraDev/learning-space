@@ -3,6 +3,21 @@ const User = require('../models/User')
 const Favorit = require('../models/Favorit')
 const RiwayatBelajar = require('../models/RiwayatBelajar')
 
+// GET PROFIL SAYA (USER LOGGED IN)
+exports.getProfile = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.userId, {
+      attributes: ['id', 'nama', 'email', 'role', 'foto', 'kelamin', 'tglLahir', 'kota', 'createdAt']
+    })
+    if (!user) {
+      return res.status(404).json({ message: 'User tidak ditemukan' })
+    }
+    res.json({ user })
+  } catch (err) {
+    res.status(500).json({ message: 'Terjadi kesalahan server', error: err.message })
+  }
+}
+
 // GET RINGKASAN AKTIVITAS BELAJAR (dipakai di halaman Profil)
 exports.getStats = async (req, res) => {
   try {

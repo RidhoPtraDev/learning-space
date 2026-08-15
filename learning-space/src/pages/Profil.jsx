@@ -46,21 +46,30 @@ export default function Profil() {
   const [stats, setStats] = useState({ kelasDiikuti: 0, kelasFavorit: 0, riwayatBelajar: 0, zoomMeeting: 0 })
 
   const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
+  const [profileUser, setProfileUser] = useState(storedUser)
   const [foto, setFoto] = useState(storedUser?.foto || null)
   const fotoRef = useRef()
   const [fotoLoading, setFotoLoading] = useState(false)
   const [fotoMsg, setFotoMsg] = useState('')
 
   useEffect(() => {
-    const fetchStats = async () => {
+    const fetchData = async () => {
       try {
-        const res = await api.get('/users/stats')
-        setStats(res.data.stats)
+        const [resStats, resProfile] = await Promise.all([
+          api.get('/users/stats'),
+          api.get('/users/profile'),
+        ])
+        setStats(resStats.data.stats)
+        if (resProfile.data?.user) {
+          setProfileUser(resProfile.data.user)
+          setFoto(resProfile.data.user.foto)
+          localStorage.setItem('user', JSON.stringify(resProfile.data.user))
+        }
       } catch (err) {
-        console.error('Gagal memuat ringkasan aktivitas belajar', err)
+        console.error('Gagal memuat data profil', err)
       }
     }
-    fetchStats()
+    fetchData()
   }, [])
 
   // Role Badge Dinamis
@@ -81,13 +90,13 @@ export default function Profil() {
     }
   }
 
-  const userRole = storedUser?.role || 'user'
+  const userRole = profileUser?.role || 'user'
   const roleInfo = getRoleBadge(userRole)
 
   const user = {
-    nama: storedUser?.nama || 'Pengguna',
-    email: storedUser?.email || '-',
-    bergabung: formatBergabung(storedUser?.createdAt),
+    nama: profileUser?.nama || 'Pengguna',
+    email: profileUser?.email || '-',
+    bergabung: formatBergabung(profileUser?.createdAt),
     role: roleInfo.text,
     roleIcon: roleInfo.icon,
     roleColor: roleInfo.color,
