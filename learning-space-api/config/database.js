@@ -6,20 +6,22 @@ const sequelize = (process.env.MYSQL_URL || process.env.DATABASE_URL)
       dialect: 'mysql',
       logging: false,
       dialectOptions: {
-        connectTimeout: 60000
+        connectTimeout: 60000,
+        family: 0
       }
     })
   : new Sequelize(
-      process.env.DB_NAME,
-      process.env.DB_USER,
-      process.env.DB_PASSWORD,
+      process.env.DB_NAME || 'learning_space',
+      process.env.DB_USER || 'root',
+      process.env.DB_PASSWORD || '',
       {
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
+        host: process.env.DB_HOST || '127.0.0.1',
+        port: process.env.DB_PORT || 3306,
         dialect: 'mysql',
         logging: false,
         dialectOptions: {
-          connectTimeout: 60000
+          connectTimeout: 60000,
+          family: 0
         }
       }
     )
