@@ -106,14 +106,15 @@ code {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   MOBILE & TABLET CROSS-BROWSER RESPONSIVE SYSTEM (SAFARI & CHROME)
+   MOBILE & TABLET RESPONSIVE SYSTEM (RUANGGURU STYLE MOBILITY)
    ───────────────────────────────────────────────────────────── */
 
-/* Fix root layout box-sizing & flex overflow for mobile */
 html, body {
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -122,22 +123,47 @@ html, body {
 }
 
 @media (max-width: 992px) {
-  /* 1. Main Page Layouts: Wrap flex columns vertically on mobile */
-  div[style*="display: flex"],
-  div[style*="display:flex"] {
+  /* 1. Main outer layout container stacks vertically (Sidebar top, Main middle, RightPanel bottom) */
+  #root > div,
+  body > div > div {
     flex-direction: column !important;
-    flex-wrap: wrap !important;
+    min-height: auto !important;
   }
 
-  /* Keep horizontal rows inside headers & cards intact */
-  div[style*="justify-content: space-between"],
-  div[style*="justify-content:space-between"],
-  div[style*="align-items: center"],
-  div[style*="align-items:center"] {
+  /* 2. Left Blue Sidebar (Top Bar on Mobile) */
+  aside:first-of-type {
+    width: 100% !important;
+    min-width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    top: 0 !important;
+    padding: 16px !important;
+    flex-direction: column !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  /* Make navigation scroll horizontally on mobile */
+  aside:first-of-type nav {
+    display: flex !important;
     flex-direction: row !important;
+    overflow-x: auto !important;
+    padding-bottom: 4px !important;
+    gap: 8px !important;
+    -webkit-overflow-scrolling: touch;
+    width: 100% !important;
   }
 
-  /* 2. Main content container full width */
+  aside:first-of-type nav > div {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Hide logout button from top sidebar on mobile to keep layout clean */
+  aside:first-of-type > div:last-child {
+    padding-top: 8px !important;
+  }
+
+  /* 3. Main Content Area */
   main {
     width: 100% !important;
     max-width: 100% !important;
@@ -145,88 +171,44 @@ html, body {
     box-sizing: border-box !important;
   }
 
-  /* 3. Left Navigation Sidebar: Turn into top navigation bar on mobile */
-  aside[style*="backgroundColor: #0066FF"],
-  aside[style*="backgroundColor:#0066FF"],
-  aside[style*="background-color: #0066FF"],
-  aside[style*="background-color:#0066FF"] {
-    width: 100% !important;
-    min-width: 100% !important;
-    height: auto !important;
-    min-height: auto !important;
-    position: relative !important;
-    top: 0 !important;
-    padding: 16px 20px !important;
-    flex-direction: column !important;
-  }
-
-  /* Horizontal scrollable navigation menu on mobile */
-  aside[style*="#0066FF"] nav {
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    padding-bottom: 8px !important;
-    gap: 8px !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  aside[style*="#0066FF"] nav > div {
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-  }
-
-  /* 4. Right Sidebar / Panel: Flows below main content */
-  aside[style*="width: 280px"],
-  aside[style*="width:280px"] {
+  /* 4. Right Sidebar Panel (Profil & Calendar mini) */
+  aside:last-of-type {
     width: 100% !important;
     max-width: 100% !important;
     height: auto !important;
-    min-height: auto !important;
     position: relative !important;
     top: 0 !important;
-    padding: 20px 16px !important;
+    padding: 16px !important;
   }
 
-  /* 5. Cards & Grids: Single column layout on mobile screens */
+  /* 5. Hero & Card Grids */
   div[style*="display: grid"],
   div[style*="display:grid"] {
     grid-template-columns: 1fr !important;
-    gap: 14px !important;
   }
 
-  /* Hero banner responsive adjustments */
-  div[style*="borderRadius: 20"],
-  div[style*="borderRadius:20"] {
+  /* Hero banner on Mobile */
+  div[style*="padding: '28px 32px'"],
+  div[style*="padding: 28px 32px"] {
     padding: 20px 16px !important;
+    flex-direction: column !important;
   }
 
-  /* 6. Login & Register Forms: Stack columns vertically */
+  /* Form Container cards (Login / Register) */
   div[style*="maxWidth: 860px"],
   div[style*="maxWidth:860px"],
   div[style*="maxWidth: 440px"],
   div[style*="maxWidth:440px"] {
-    max-width: 100% !important;
     width: 100% !important;
-    margin: 0 auto !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    margin: 0 !important;
     border-radius: 16px !important;
   }
 
-  /* Hide left banner on mobile register page for clean form display */
+  /* Hide left banner image on mobile Register page */
   div[style*="flex: 0 0 42%"],
   div[style*="flex:0 0 42%"] {
     display: none !important;
-  }
-}
-
-@media (max-width: 576px) {
-  /* Ultra-small mobile screen padding tweaks */
-  main {
-    padding: 16px 12px !important;
-  }
-
-  /* Card paddings on mobile */
-  div[style*="padding: '28px 32px'"],
-  div[style*="padding: '24px 40px'"] {
-    padding: 20px 16px !important;
   }
 }
