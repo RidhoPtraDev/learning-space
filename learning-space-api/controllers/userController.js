@@ -12,7 +12,15 @@ exports.getProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: 'User tidak ditemukan' })
     }
-    res.json({ user })
+
+    const userData = user.toJSON()
+    // Normalkan foto: jika DB masih simpan URL lama (absolut), ekstrak path relatif saja
+    if (userData.foto && userData.foto.includes('/uploads/foto/')) {
+      const parts = userData.foto.split('/uploads/foto/')
+      userData.foto = `/uploads/foto/${parts[1]}`
+    }
+
+    res.json({ user: userData })
   } catch (err) {
     res.status(500).json({ message: 'Terjadi kesalahan server', error: err.message })
   }
@@ -150,19 +158,20 @@ exports.uploadFoto = async (req, res) => {
       fs.unlink(pathFileLama, () => {})
     }
 
-    const fotoUrl = `${req.protocol}://${req.get('host')}/uploads/foto/${req.file.filename}`
-    user.foto = fotoUrl
+    // Simpan HANYA path relatif di DB agar tidak terikat domain localtunnel/ngrok
+    const fotoRelative = `/uploads/foto/${req.file.filename}`
+    user.foto = fotoRelative
     await user.save()
 
     res.json({
       message: 'Foto profil berhasil diperbarui',
-      foto: fotoUrl,
+      foto: fotoRelative,
       user: {
         id: user.id,
         nama: user.nama,
         email: user.email,
         role: user.role,
-        foto: fotoUrl,
+        foto: fotoRelative,
         kelamin: user.kelamin,
         tglLahir: user.tglLahir,
         kota: user.kota,

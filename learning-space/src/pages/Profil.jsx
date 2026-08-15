@@ -47,10 +47,34 @@ export default function Profil() {
 
   const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
   const [profileUser, setProfileUser] = useState(storedUser)
-  const [foto, setFoto] = useState(storedUser?.foto || null)
+
+  // Mengubah path relatif/absolut foto menjadi URL yang bisa diload oleh browser
+  // Karena foto disimpan di backend lokal (localtunnel), URL absolut tidak bisa
+  // diakses oleh browser karena localtunnel membutuhkan header khusus yang tidak
+  // bisa dikirim via tag <img>. Solusinya: simpan path relatif di DB,
+  // rekonstruksi URL dari VITE_API_URL di frontend.
+  const buildFotoUrl = (fotoPath) => {
+    if (!fotoPath) return null
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+    const baseUrl = apiUrl.replace(/\/api\/?$/, '')
+    // Path relatif seperti /uploads/foto/file.jpg
+    if (fotoPath.startsWith('/uploads/')) {
+      return `${baseUrl}${fotoPath}`
+    }
+    // URL absolut lama — ekstrak nama file dan rekonstruksi dengan domain sekarang
+    if (fotoPath.includes('/uploads/foto/')) {
+      const filename = fotoPath.split('/uploads/foto/').pop()
+      return `${baseUrl}/uploads/foto/${filename}`
+    }
+    return fotoPath
+  }
+
+  const [foto, setFoto] = useState(buildFotoUrl(storedUser?.foto))
   const fotoRef = useRef()
   const [fotoLoading, setFotoLoading] = useState(false)
   const [fotoMsg, setFotoMsg] = useState('')
+
+  const getFullFotoUrl = buildFotoUrl
 
   useEffect(() => {
     const fetchData = async () => {
@@ -62,7 +86,7 @@ export default function Profil() {
         setStats(resStats.data.stats)
         if (resProfile.data?.user) {
           setProfileUser(resProfile.data.user)
-          setFoto(resProfile.data.user.foto)
+          setFoto(buildFotoUrl(resProfile.data.user.foto))
           localStorage.setItem('user', JSON.stringify(resProfile.data.user))
         }
       } catch (err) {
@@ -118,7 +142,10 @@ export default function Profil() {
     fd.append('foto', file)
     try {
       const res = await api.post('/users/foto', fd, { headers: { 'Content-Type': 'multipart/form-data' } })
-      setFoto(res.data.foto)
+      // res.data.foto berisi path relatif: /uploads/foto/namafile.jpg
+      const builtUrl = buildFotoUrl(res.data.foto)
+      setFoto(builtUrl)
+      // Simpan path relatif di localStorage agar buildFotoUrl bisa rekonstruksi ulang saat reload
       localStorage.setItem('user', JSON.stringify({ ...storedUser, foto: res.data.foto }))
       setFotoMsg('Foto berhasil diperbarui!')
       setTimeout(() => setFotoMsg(''), 3000)

@@ -43,7 +43,21 @@ export default function EditProfil() {
     tglLahir: storedUser?.tglLahir || '',
     kota: storedUser?.kota || 'Jakarta',
   })
-  const [avatar, setAvatar] = useState(storedUser?.foto || null)
+  // Rekonstruksi URL foto agar selalu pakai domain yang benar (VITE_API_URL),
+  // bukan domain localtunnel yang bisa berubah dan tersimpan di DB/localStorage.
+  const buildFotoUrl = (fotoPath) => {
+    if (!fotoPath) return null
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+    const baseUrl = apiUrl.replace(/\/api\/?$/, '')
+    if (fotoPath.startsWith('/uploads/')) return `${baseUrl}${fotoPath}`
+    if (fotoPath.includes('/uploads/foto/')) {
+      const filename = fotoPath.split('/uploads/foto/').pop()
+      return `${baseUrl}/uploads/foto/${filename}`
+    }
+    return fotoPath
+  }
+
+  const [avatar, setAvatar] = useState(buildFotoUrl(storedUser?.foto))
   const [avatarFile, setAvatarFile] = useState(null)
   const [errors, setErrors] = useState({})
   const [serverError, setServerError] = useState('')
@@ -73,12 +87,13 @@ export default function EditProfil() {
 
     try {
       // 1. Upload foto dulu kalau ada file baru
-      let fotoUrl = storedUser?.foto || null
+      // Simpan path relatif di localStorage — bukan URL absolut localtunnel
+      let fotoRelativePath = storedUser?.foto || null
       if (avatarFile) {
         const fd = new FormData()
         fd.append('foto', avatarFile)
         const fotoRes = await api.post('/users/foto', fd, { headers: { 'Content-Type': 'multipart/form-data' } })
-        fotoUrl = fotoRes.data.foto
+        fotoRelativePath = fotoRes.data.foto // server sekarang mengembalikan path relatif
       }
 
       // 2. Update data profil
@@ -98,8 +113,8 @@ export default function EditProfil() {
         })
       }
 
-      // 4. Simpan ke localStorage dengan foto terbaru
-      localStorage.setItem('user', JSON.stringify({ ...res.data.user, foto: fotoUrl }))
+      // 4. Simpan ke localStorage — foto disimpan sebagai path relatif
+      localStorage.setItem('user', JSON.stringify({ ...res.data.user, foto: fotoRelativePath }))
 
       setLoading(false)
       setSaved(true)
