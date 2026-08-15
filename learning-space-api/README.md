@@ -21,7 +21,7 @@ npm run dev            # development (nodemon)
 npm start              # production
 ```
 
-Server berjalan di **http://localhost:5000**
+Server berjalan di `<http://localhost:5000>`
 
 ## 🌐 Publik Access / Tunnel (Untuk Deployment Vercel)
 
@@ -31,12 +31,12 @@ Jika ingin mengekspos backend lokal ke Vercel/HP dengan URL subdomain permanen, 
 npx localtunnel --port 5000 --subdomain learnspace-ridho
 ```
 
-> **URL Publik Backend**: `https://learnspace-ridho.loca.lt`  
+> **URL Publik Backend**: `<https://learnspace-ridho.loca.lt>`  
 > Gunakan `https://learnspace-ridho.loca.lt/api` sebagai `VITE_API_URL` pada Environment Variables di Vercel.
 
 ## 📁 Struktur
 
-```
+```text
 controllers/    ← Business logic per resource
 middleware/     ← Auth JWT, error handler
 models/         ← Sequelize models
@@ -52,7 +52,7 @@ server.js       ← Entry point
 Salin `.env.example` menjadi `.env` dan isi nilainya:
 
 | Variable | Deskripsi |
-|----------|----------|
+| --- | --- |
 | `DB_NAME` | Nama database MySQL |
 | `DB_USER` | Username MySQL |
 | `DB_PASSWORD` | Password MySQL |
@@ -66,7 +66,7 @@ Salin `.env.example` menjadi `.env` dan isi nilainya:
 ## 📡 API Endpoints (Ringkasan)
 
 | Method | Endpoint | Deskripsi | Auth |
-|--------|---------|-----------|------|
+| --- | --- | --- | --- |
 | POST | `/api/auth/register` | Registrasi + kirim OTP | - |
 | POST | `/api/auth/verify-otp` | Verifikasi OTP email | - |
 | POST | `/api/auth/login` | Login | - |
