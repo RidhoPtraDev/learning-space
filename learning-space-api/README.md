@@ -23,6 +23,17 @@ npm start              # production
 
 Server berjalan di **http://localhost:5000**
 
+## 🌐 Publik Access / Tunnel (Untuk Deployment Vercel)
+
+Jika ingin mengekspos backend lokal ke Vercel/HP dengan URL subdomain permanen, jalankan perintah berikut:
+
+```bash
+npx localtunnel --port 5000 --subdomain learnspace-ridho
+```
+
+> **URL Publik Backend**: `https://learnspace-ridho.loca.lt`  
+> Gunakan `https://learnspace-ridho.loca.lt/api` sebagai `VITE_API_URL` pada Environment Variables di Vercel.
+
 ## 📁 Struktur
 
 ```
