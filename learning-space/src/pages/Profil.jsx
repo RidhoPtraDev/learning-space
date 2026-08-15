@@ -96,6 +96,9 @@ export default function Profil() {
   const user = {
     nama: profileUser?.nama || 'Pengguna',
     email: profileUser?.email || '-',
+    kelamin: profileUser?.kelamin || '-',
+    tglLahir: profileUser?.tglLahir || '-',
+    kota: profileUser?.kota || '-',
     bergabung: formatBergabung(profileUser?.createdAt),
     role: roleInfo.text,
     roleIcon: roleInfo.icon,
@@ -247,6 +250,21 @@ export default function Profil() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
               <span style={s.infoValue}>{user.email}</span>
             </div>
+          </div>
+          <hr style={s.infoDiv} />
+          <div style={s.infoRow}>
+            <span style={s.infoLabel}>Jenis Kelamin</span>
+            <span style={s.infoValue}>{user.kelamin}</span>
+          </div>
+          <hr style={s.infoDiv} />
+          <div style={s.infoRow}>
+            <span style={s.infoLabel}>Tanggal Lahir</span>
+            <span style={s.infoValue}>{user.tglLahir}</span>
+          </div>
+          <hr style={s.infoDiv} />
+          <div style={s.infoRow}>
+            <span style={s.infoLabel}>Kota / Kabupaten</span>
+            <span style={s.infoValue}>{user.kota}</span>
           </div>
           <hr style={s.infoDiv} />
           <div style={s.infoRow}>
