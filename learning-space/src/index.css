@@ -52,18 +52,13 @@
 
 body {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  min-height: 100vh;
+  width: 100%;
 }
 
 h1,
@@ -108,4 +103,66 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   MOBILE & TABLET RESPONSIVE SYSTEM
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 992px) {
+  /* Flex layouts wrap vertically on smaller screens */
+  div[style*="display: flex"],
+  div[style*="display:flex"] {
+    flex-wrap: wrap;
+  }
+
+  /* Make main content area full width */
+  main {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px 16px !important;
+  }
+
+  /* Right sidebar / panel flows naturally below main content */
+  aside {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    padding: 20px 16px !important;
+  }
+
+  /* Hide fixed sidebar background overlay overflow */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Register / Login two-column split cards wrap vertically on mobile */
+  div[style*="maxWidth: 860px"],
+  div[style*="maxWidth:860px"] {
+    flex-direction: column !important;
+    max-width: 100% !important;
+  }
+
+  /* Hide left decorative banner on mobile for clean form layout */
+  div[style*="flex: 0 0 42%"],
+  div[style*="flex:0 0 42%"] {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide sidebar on small mobile screens or collapse cleanly */
+  aside[style*="backgroundColor: #0066FF"],
+  aside[style*="backgroundColor:#0066FF"] {
+    width: 100% !important;
+    height: auto !important;
+    position: relative !important;
+    padding: 16px !important;
+  }
+
+  /* Adjust grid containers to single column */
+  div[style*="display: grid"],
+  div[style*="display:grid"] {
+    grid-template-columns: 1fr !important;
+  }
 }
