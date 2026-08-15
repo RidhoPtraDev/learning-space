@@ -1,16 +1,27 @@
 const { Sequelize } = require('sequelize')
 require('dotenv').config()
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASSWORD,
-  {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: 'mysql',
-    logging: false, // ganti jadi true kalau mau lihat query SQL di terminal
-  }
-)
+const sequelize = (process.env.MYSQL_URL || process.env.DATABASE_URL)
+  ? new Sequelize(process.env.MYSQL_URL || process.env.DATABASE_URL, {
+      dialect: 'mysql',
+      logging: false,
+      dialectOptions: {
+        connectTimeout: 60000
+      }
+    })
+  : new Sequelize(
+      process.env.DB_NAME,
+      process.env.DB_USER,
+      process.env.DB_PASSWORD,
+      {
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        dialect: 'mysql',
+        logging: false,
+        dialectOptions: {
+          connectTimeout: 60000
+        }
+      }
+    )
 
 module.exports = sequelize
