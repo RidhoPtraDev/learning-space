@@ -141,3 +141,18 @@ git push origin frontend/arviandra-deska
 2. **CORS & Localtunnel Interstitial Bypass**:
    - Backend `server.js` mengonfigurasi CORS dengan `allowedHeaders`: `['Content-Type', 'Authorization', 'bypass-tunnel-reminder', 'Cache-Control', 'Pragma']`.
    - Interceptor Axios otomatis menyisipkan header `bypass-tunnel-reminder: true` untuk melewati halaman peringatan interstitial localtunnel secara transparan.
+
+---
+
+## 📱 10. Catatan Perbaikan Rilis v1.4.0 (Profile Sync, Mobile Responsive & Favicon)
+
+1. **Normalisasi Foto Profil (Relative Path Storage)**:
+   - Endpoint `POST /api/users/foto` dan `GET /api/users/profile` menyimpan serta menormalisasi path foto menjadi relatif (`/uploads/foto/filename.jpg`) untuk mencegah URL rusak saat localtunnel ganti subdomain.
+   - Frontend (`Profil.jsx`, `EditProfil.jsx`, `RightSidebar.jsx`, `KelasDetail.jsx`, `MateriDetail.jsx`) merekonstruksi URL foto secara dinamis dari `VITE_API_URL`.
+
+2. **Mobile Cross-Browser Responsive System**:
+   - Pembersihan aturan `#root` fixed-width `1126px` pada `index.css`.
+   - Penambahan aturan CSS responsive mobile ala RuangGuru (navigasi atas horizontal scroll, stack vertikal kartu & form, full-width main container, serta touch scrolling halus untuk iOS Safari & Android Chrome).
+
+3. **Branding & Official Favicon**:
+   - Pemasangan logo resmi LearningSpace `favicon.png` pada frontend user & admin panel menggantikan icon default Vite lightning.

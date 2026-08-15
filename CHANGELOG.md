@@ -9,6 +9,16 @@ dan project ini menggunakan [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] — 2026-08-15
+
+### Added
+- Pemasangan logo favicon resmi LearningSpace (`favicon.png`) di frontend user dan admin panel.
+- Sistem Tata Letak Responsif Lintas Browser (iOS Safari & Android Chrome) ala RuangGuru/EdTech modern.
+
+### Fixed
+- Normalisasi penanganan foto profil (`/uploads/foto/`) berbasis path relatif untuk mencegah broken image saat localtunnel ganti subdomain.
+- Penggunaan komponen shared `RightSidebar` secara konsisten di `KelasDetail` dan `MateriDetail`.
+
 ---
 
 ## [1.3.0] — 2026-08-14
