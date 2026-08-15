@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import logo from '../assets/logo.png'
-import avatarDefault from '../assets/avatar-default.png'
 import iconDeskripsi from '../assets/icon-deskripsi.png'
+import RightSidebar from '../components/RightSidebar.jsx'
 import api from '../api/axios'
 
 // Helper: tentukan src gambar ilustrasi materi, mendukung 2 format:
@@ -347,23 +347,7 @@ export default function MateriDetail() {
 
       </main>
 
-      <aside style={s.rightPanel}>
-        <div style={s.profileCard}>
-          <div style={s.avatarWrap}>
-            <img src={userFoto || avatarDefault} alt="Avatar" style={s.avatar}
-              onError={e => { e.target.src = avatarDefault }} />
-            <div style={{ ...s.avatarFallback, display: 'none' }}>
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="#aaa">
-                <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/>
-              </svg>
-            </div>
-          </div>
-          <p style={s.profileName}>{userName}</p>
-          <p style={s.profileRole}>Student</p>
-          <button style={s.profileBtn} onClick={() => navigate('/profil')}>Profil</button>
-        </div>
-        <MiniCalendar />
-      </aside>
+      <RightSidebar />
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
