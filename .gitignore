@@ -4,6 +4,7 @@
 
 # ── Dependencies ──────────────────────────────
 node_modules/
+**/node_modules/
 .pnp
 .pnp.js
 
@@ -17,6 +18,11 @@ node_modules/
 dist/
 build/
 out/
+
+# ── Vite cache (auto-generated, never commit) ──
+.vite/
+**/.vite/
+**/node_modules/.vite/
 
 # ── Uploaded files (runtime, not versioned) ───
 learning-space-api/uploads/foto/*
@@ -49,7 +55,6 @@ Thumbs.db
 __MACOSX/
 
 # ── Editor / IDE ──────────────────────────────
-.vscode/
 .idea/
 *.suo
 *.ntvs*
