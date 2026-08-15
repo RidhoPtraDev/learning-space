@@ -156,3 +156,24 @@ git push origin frontend/arviandra-deska
 
 3. **Branding & Official Favicon**:
    - Pemasangan logo resmi LearningSpace `favicon.png` pada frontend user & admin panel menggantikan icon default Vite lightning.
+
+---
+
+## ☁️ 11. Catatan Rilis v1.5.0 — Deploy Production 24/7 (Railway Cloud & Vercel Integration)
+
+1. **Deploy Backend Node.js & Database MySQL 24/7 (Railway.app)**:
+   - **Database Cloud**: Node MySQL 9.4 ter-deploy di Railway (`steadfast-nourishment`) dengan ekspor data lokal `learning_space_export.sql` terimport 100%.
+   - **Backend API Cloud**: App Express `learning-space-api` ter-deploy di Railway dengan Root Directory `/learning-space-api` dan URL publik permanen: `https://learning-space-production.up.railway.app/api`.
+   - **Dynamic Connection String**: `config/database.js` mendukung `MYSQL_URL` / `DATABASE_URL` dengan `dialectOptions.family = 0` untuk resolusi IPv4/IPv6 otomatis di Railway internal network.
+   - **Fix Linux Case Sensitivity**: Penamaan berkas route (`testimoniRoutes.js`, `layananRoutes.js`) dan controller (`testimoniController.js`, `layananController.js`) diubah strictly menjadi *camelCase* untuk mencegah `MODULE_NOT_FOUND` pada OS Linux Railway.
+   - **Non-blocking Startup**: `server.js` mendengarkan `$PORT` secara langsung saat awal inisialisasi agar dapat lolos HTTP Health Checks Railway dalam 0.1 detik.
+
+2. **Integrasi Frontend Vercel**:
+   - `VITE_API_URL` di Vercel dikonfigurasi permanen ke `https://learning-space-production.up.railway.app/api`.
+   - Aplikasi dapat diakses dan digunakan untuk login/register 24 jam nonstop dari HP maupun desktop tanpa ketergantungan pada laptop lokal atau localtunnel.
+
+3. **Pembersihan Keamanan & Sanitasi Repository (Git Index Cleanup)**:
+   - Pembersihan 36+ warning `markdownlint` di `CHANGELOG.md` (MD022, MD024, MD032, MD053).
+   - Pencabutan tracking ribuan berkas `node_modules/` dan cache `.vite/` dari Git index via `git rm --cached`, serta penguatan aturan `.gitignore` (`**/node_modules/`, `**/.vite/`).
+   - Pencabutan 31 berkas media runtime `uploads/` dari Git index dengan tetap mempertahankan berkas `.gitkeep` agar hierarki folder tetap ada.
+

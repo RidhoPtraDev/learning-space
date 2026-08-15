@@ -13,6 +13,22 @@ Tidak ada perubahan yang menunggu rilis saat ini.
 
 ---
 
+## 1.5.0 — 2026-08-15
+
+**Tambahan baru:**
+
+- Deploy Backend Node.js Express & MySQL 9.4 ke Railway Cloud 24/7 (URL: `https://learning-space-production.up.railway.app/api`)
+- Integrasi `VITE_API_URL` Vercel dengan Railway backend untuk uptime permanen tanpa ketergantungan localtunnel / laptop lokal
+
+**Perbaikan:**
+
+- Fix Linux case-sensitivity crash pada Railway (`testimoniRoutes.js`, `layananRoutes.js`, `testimoniController.js`, `layananController.js`)
+- Fix Express non-blocking startup lifecycle di `server.js` agar lolos HTTP Health Checks Railway dalam 0.1 detik
+- Pembersihan tracking Git index untuk `node_modules/`, `.vite/`, dan 31 berkas media runtime `uploads/`
+- Perbaikan 36+ warning `markdownlint` pada dokumen CHANGELOG.md
+
+---
+
 ## 1.4.0 — 2026-08-15
 
 **Tambahan baru:**
