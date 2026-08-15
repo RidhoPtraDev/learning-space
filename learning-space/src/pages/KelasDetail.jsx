@@ -120,6 +120,20 @@ export default function KelasDetail() {
   const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
   const userName = storedUser?.nama || 'Pengguna'
 
+  const buildFotoUrl = (fotoPath) => {
+    if (!fotoPath) return null
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+    const baseUrl = apiUrl.replace(/\/api\/?$/, '')
+    if (fotoPath.startsWith('/uploads/')) return `${baseUrl}${fotoPath}`
+    if (fotoPath.includes('/uploads/foto/')) {
+      const filename = fotoPath.split('/uploads/foto/').pop()
+      return `${baseUrl}/uploads/foto/${filename}`
+    }
+    return fotoPath
+  }
+
+  const userFoto = buildFotoUrl(storedUser?.foto)
+
   useEffect(() => {
     const fetchKelas = async () => {
       setLoading(true)
@@ -281,7 +295,7 @@ export default function KelasDetail() {
       <aside style={s.rightPanel}>
         <div style={s.profileCard}>
           <div style={s.avatarWrap}>
-            <img src={storedUser?.foto || avatarDefault} alt="Avatar" style={s.avatar}
+            <img src={userFoto || avatarDefault} alt="Avatar" style={s.avatar}
               onError={e => { e.target.src = avatarDefault }} />
             <div style={{ ...s.avatarFallback, display: 'none' }}>
               <svg width="60" height="60" viewBox="0 0 24 24" fill="#aaa">

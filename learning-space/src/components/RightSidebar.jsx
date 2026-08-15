@@ -79,7 +79,20 @@ export default function RightSidebar() {
   
   const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
   const userName = storedUser?.nama || 'Pengguna'
-  const userFoto = storedUser?.foto || null
+
+  const buildFotoUrl = (fotoPath) => {
+    if (!fotoPath) return null
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
+    const baseUrl = apiUrl.replace(/\/api\/?$/, '')
+    if (fotoPath.startsWith('/uploads/')) return `${baseUrl}${fotoPath}`
+    if (fotoPath.includes('/uploads/foto/')) {
+      const filename = fotoPath.split('/uploads/foto/').pop()
+      return `${baseUrl}/uploads/foto/${filename}`
+    }
+    return fotoPath
+  }
+
+  const userFoto = buildFotoUrl(storedUser?.foto)
   const fetchReminders = async () => {
     try {
       const res = await api.get('/reminder')
