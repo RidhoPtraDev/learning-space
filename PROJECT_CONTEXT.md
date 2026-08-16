@@ -176,4 +176,3 @@ git push origin frontend/arviandra-deska
    - Pembersihan 36+ warning `markdownlint` di `CHANGELOG.md` (MD022, MD024, MD032, MD053).
    - Pencabutan tracking ribuan berkas `node_modules/` dan cache `.vite/` dari Git index via `git rm --cached`, serta penguatan aturan `.gitignore` (`**/node_modules/`, `**/.vite/`).
    - Pencabutan 31 berkas media runtime `uploads/` dari Git index dengan tetap mempertahankan berkas `.gitkeep` agar hierarki folder tetap ada.
-
