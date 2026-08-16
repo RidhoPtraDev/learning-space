@@ -6,8 +6,7 @@ const sequelize = (process.env.MYSQL_URL || process.env.DATABASE_URL)
       dialect: 'mysql',
       logging: false,
       dialectOptions: {
-        connectTimeout: 60000,
-        family: 0
+        connectTimeout: 30000
       }
     })
   : new Sequelize(
@@ -20,8 +19,7 @@ const sequelize = (process.env.MYSQL_URL || process.env.DATABASE_URL)
         dialect: 'mysql',
         logging: false,
         dialectOptions: {
-          connectTimeout: 60000,
-          family: 0
+          connectTimeout: 30000
         }
       }
     )
