@@ -19,7 +19,10 @@ const sequelize = dbUrl
       dialect: 'mysql',
       logging: false,
       dialectOptions: {
-        connectTimeout: 30000
+        connectTimeout: 30000,
+        ssl: {
+          rejectUnauthorized: false
+        }
       }
     })
   : new Sequelize(
@@ -32,7 +35,10 @@ const sequelize = dbUrl
         dialect: 'mysql',
         logging: false,
         dialectOptions: {
-          connectTimeout: 30000
+          connectTimeout: 30000,
+          ssl: {
+            rejectUnauthorized: false
+          }
         }
       }
     )
