@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import api from '../api/axios'
@@ -78,8 +78,13 @@ function DiagramDonat({ data, loading }) {
   )
 
   const R = 70, r = 42, cx = 90, cy = 90
-  let cumPct = 0
-  const slices = data.map(item => { const start = cumPct; cumPct += item.persen; return { ...item, start, end: cumPct } })
+  const slices = data.reduce((acc, item) => {
+    const start = acc.cumPct
+    const end = start + item.persen
+    acc.list.push({ ...item, start, end })
+    acc.cumPct = end
+    return acc
+  }, { cumPct: 0, list: [] }).list
 
   function polar(pct, radius) {
     const angle = (pct / 100) * 2 * Math.PI - Math.PI / 2
@@ -134,8 +139,6 @@ const d = {
 // ── MAIN COMPONENT ───────────────────────────────────────────
 export default function AnalitikProgress() {
   const navigate = useNavigate()
-  const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
-  const userName = storedUser?.nama || 'Pelajar'
 
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)

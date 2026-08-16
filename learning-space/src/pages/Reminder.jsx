@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import ilustrasiReminder from '../assets/ilustrasi-reminder.png' 
@@ -56,22 +56,11 @@ export default function Reminder() {
   const [loading, setLoading] = useState(true)
   const [errorMsg, setErrorMsg] = useState('')
 
-  const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
-  const userName = storedUser?.nama || 'Pelajar'
-
-  const fetchReminders = async () => {
-    try {
-      const res = await api.get('/reminder')
-      setReminders(res.data.reminders || [])
-    } catch (err) {
-      setErrorMsg(err.response?.data?.message || 'Gagal memuat reminder')
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
-    fetchReminders()
+    api.get('/reminder')
+      .then(res => setReminders(res.data.reminders || []))
+      .catch(err => setErrorMsg(err.response?.data?.message || 'Gagal memuat reminder'))
+      .finally(() => setLoading(false))
   }, [])
 
   const today = new Date().toISOString().slice(0, 10)

@@ -48,9 +48,10 @@ export default function KelasFavorit() {
   const [adding,  setAdding]  = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
 
-  // ── FETCH FAVORIT USER ──────────────────────────────────────
+
+
+
   const fetchFavorit = async () => {
-    setErrorMsg('')
     try {
       const res = await api.get('/favorit')
       setFavorites(res.data.favorit || [])
@@ -61,19 +62,15 @@ export default function KelasFavorit() {
     }
   }
 
-  // ── FETCH SEMUA KELAS (untuk modal) ─────────────────────────
-  const fetchAllKelas = async () => {
-    try {
-      const res = await api.get('/kelas')
-      setAllKelas(res.data.kelas || [])
-    } catch (err) {
-      console.error('Gagal ambil kelas', err)
-    }
-  }
-
   useEffect(() => {
-    fetchFavorit()
-    fetchAllKelas()
+    api.get('/favorit')
+      .then(res => setFavorites(res.data.favorit || []))
+      .catch(err => setErrorMsg(err.response?.data?.message || 'Gagal memuat favorit'))
+      .finally(() => setLoading(false))
+
+    api.get('/kelas')
+      .then(res => setAllKelas(res.data.kelas || []))
+      .catch(err => console.error('Gagal ambil kelas', err))
   }, [])
 
   const handleLogout = () => {

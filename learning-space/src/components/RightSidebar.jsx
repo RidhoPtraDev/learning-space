@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import avatarDefault from '../assets/avatar-default.png'
 
@@ -85,31 +85,27 @@ export default function RightSidebar() {
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
     const baseUrl = apiUrl.replace(/\/api\/?$/, '')
     if (fotoPath.startsWith('/uploads/')) return `${baseUrl}${fotoPath}`
-    if (fotoPath.includes('/uploads/foto/')) {
-      const filename = fotoPath.split('/uploads/foto/').pop()
-      return `${baseUrl}/uploads/foto/${filename}`
-    }
     return fotoPath
   }
-
   const userFoto = buildFotoUrl(storedUser?.foto)
-  const fetchReminders = async () => {
-    try {
-      const res = await api.get('/reminder')
-      setReminders(res.data.reminders || [])
-    } catch (err) {
-      console.error('Gagal memuat reminder di sidebar:', err)
-    }
-  }
+
+
 
   useEffect(() => {
-    fetchReminders()
+    api.get('/reminder')
+      .then(res => setReminders(res.data.reminders || []))
+      .catch(err => console.error('Gagal memuat reminder di sidebar:', err))
 
     // Custom event listener untuk sinkronisasi di satu tab
-    window.addEventListener('reminders_updated', fetchReminders)
+    const handleUpdate = () => {
+      api.get('/reminder')
+        .then(res => setReminders(res.data.reminders || []))
+        .catch(err => console.error('Gagal memuat reminder di sidebar:', err))
+    }
+    window.addEventListener('reminders_updated', handleUpdate)
 
     return () => {
-      window.removeEventListener('reminders_updated', fetchReminders)
+      window.removeEventListener('reminders_updated', handleUpdate)
     }
   }, [])
 

@@ -1,11 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import api from '../api/axios'
 
 export default function VerifikasiOtp() {
   const navigate = useNavigate()
   const location = useLocation()
-  const [email, setEmail] = useState('')
+
+  // Inisialisasi email langsung dari route state/query params — hindari setState di dalam effect
+  const [email] = useState(() => {
+    const stateEmail = location.state?.email
+    if (stateEmail) return stateEmail
+    const searchParams = new URLSearchParams(location.search)
+    return searchParams.get('email') || ''
+  })
+
   const [otp, setOtp] = useState(['', '', '', '', '', ''])
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
@@ -16,21 +24,11 @@ export default function VerifikasiOtp() {
   const otpRefs = useRef([])
 
   useEffect(() => {
-    // Ambil email dari router state, jika tidak ada fallback ke query param atau kosong
-    const stateEmail = location.state?.email
-    if (stateEmail) {
-      setEmail(stateEmail)
-    } else {
-      const searchParams = new URLSearchParams(location.search)
-      const queryEmail = searchParams.get('email')
-      if (queryEmail) {
-        setEmail(queryEmail)
-      } else {
-        // Jika tidak ada email sama sekali, kembalikan ke register
-        navigate('/register')
-      }
+    // Jika tidak ada email, kembalikan ke register
+    if (!email) {
+      navigate('/register')
     }
-  }, [location, navigate])
+  }, [email, navigate])
 
   const startResendTimer = (seconds = 60) => {
     setResendTimer(seconds)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import avatarDefault from '../assets/avatar-default.png'
@@ -73,8 +73,6 @@ export default function Profil() {
   const fotoRef = useRef()
   const [fotoLoading, setFotoLoading] = useState(false)
   const [fotoMsg, setFotoMsg] = useState('')
-
-  const getFullFotoUrl = buildFotoUrl
 
   useEffect(() => {
     const fetchData = async () => {

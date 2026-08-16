@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import ilustrasiRiwayat from '../assets/ilustrasi-riwayat.png'
@@ -83,25 +83,12 @@ export default function RiwayatBelajar() {
   const [loading, setLoading]       = useState(true)
   const [errorMsg, setErrorMsg]     = useState('')
 
-  const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
-  const userName   = storedUser?.nama || 'Pengguna'
-
   // ── FETCH RIWAYAT DARI API ──────────────────────────────────
-  const fetchRiwayat = async () => {
-    setLoading(true)
-    setErrorMsg('')
-    try {
-      const res = await api.get('/riwayat')
-      setRiwayat(res.data.riwayat)
-    } catch (err) {
-      setErrorMsg(err.response?.data?.message || 'Gagal memuat riwayat belajar')
-    } finally {
-      setLoading(false)
-    }
-  }
-
   useEffect(() => {
-    fetchRiwayat()
+    api.get('/riwayat')
+      .then(res => setRiwayat(res.data.riwayat))
+      .catch(err => setErrorMsg(err.response?.data?.message || 'Gagal memuat riwayat belajar'))
+      .finally(() => setLoading(false))
   }, [])
 
   const handleLogout = () => {

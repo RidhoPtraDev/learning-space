@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import iconDeskripsi from '../assets/icon-deskripsi.png'
@@ -44,47 +44,6 @@ const menuItems = [
   { key: 'reminder',  label: 'Reminder',           path: '/reminder',  icon: <IconReminder /> },
 ]
 
-function MiniCalendar() {
-  const today = new Date()
-  const [current, setCurrent] = useState({ year: today.getFullYear(), month: today.getMonth() })
-  const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']
-  const dayNames = ['Sen','Sel','Rab','Kam','Jum','Sab','Ming']
-  const firstDay = new Date(current.year, current.month, 1).getDay()
-  const offset = firstDay === 0 ? 6 : firstDay - 1
-  const daysInMonth = new Date(current.year, current.month + 1, 0).getDate()
-  const prev = () => setCurrent(c => c.month === 0 ? { year: c.year-1, month: 11 } : { ...c, month: c.month-1 })
-  const next = () => setCurrent(c => c.month === 11 ? { year: c.year+1, month: 0 } : { ...c, month: c.month+1 })
-  const cells = []
-  for (let i = 0; i < offset; i++) cells.push(null)
-  for (let d = 1; d <= daysInMonth; d++) cells.push(d)
-  const isToday = (d) => d === today.getDate() && current.month === today.getMonth() && current.year === today.getFullYear()
-  return (
-    <div style={cal.wrap}>
-      <div style={cal.header}>
-        <button onClick={prev} style={cal.navBtn}>&#8249;</button>
-        <span style={cal.monthLabel}>{monthNames[current.month]} {current.year}</span>
-        <button onClick={next} style={cal.navBtn}>&#8250;</button>
-      </div>
-      <hr style={{ border: 'none', borderTop: '1px solid #e5e7eb', margin: '8px 0' }} />
-      <div style={cal.grid}>
-        {dayNames.map(d => <div key={d} style={cal.dayName}>{d}</div>)}
-        {cells.map((d, i) => (
-          <div key={i} style={d && isToday(d) ? cal.today : cal.day}>{d || ''}</div>
-        ))}
-      </div>
-    </div>
-  )
-}
-const cal = {
-  wrap: { backgroundColor: '#fff', borderRadius: '16px', padding: '16px', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' },
-  header: { display: 'flex', alignItems: 'center', justifyContent: 'space-between' },
-  navBtn: { background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.2rem', color: '#555', padding: '0 4px' },
-  monthLabel: { fontWeight: 700, fontSize: '0.9rem', color: '#111' },
-  grid: { display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '2px', textAlign: 'center' },
-  dayName: { fontSize: '0.72rem', color: '#888', fontWeight: 600, padding: '4px 0' },
-  day: { fontSize: '0.8rem', color: '#444', padding: '5px 2px', borderRadius: '6px' },
-  today: { fontSize: '0.8rem', color: '#fff', padding: '5px 2px', borderRadius: '6px', backgroundColor: '#0066FF', fontWeight: 700 },
-}
 
 function getYoutubeId(url) {
   if (!url) return null
@@ -116,23 +75,6 @@ export default function MateriDetail() {
   const { kelasId, materiId } = useParams()
   const [activeMenu, setActiveMenu] = useState('kelas')
 
-  const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
-  const userName = storedUser?.nama || 'Pengguna'
-
-  const buildFotoUrl = (fotoPath) => {
-    if (!fotoPath) return null
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api'
-    const baseUrl = apiUrl.replace(/\/api\/?$/, '')
-    if (fotoPath.startsWith('/uploads/')) return `${baseUrl}${fotoPath}`
-    if (fotoPath.includes('/uploads/foto/')) {
-      const filename = fotoPath.split('/uploads/foto/').pop()
-      return `${baseUrl}/uploads/foto/${filename}`
-    }
-    return fotoPath
-  }
-
-  const userFoto = buildFotoUrl(storedUser?.foto)
-
   const [materi,   setMateri]   = useState(null)
   const [loading,  setLoading]  = useState(true)
   const [errorMsg, setErrorMsg] = useState('')
@@ -153,7 +95,7 @@ export default function MateriDetail() {
     fetchMateri()
   }, [kelasId, materiId])
 
-  const riwayatSudahDicatat = React.useRef(false)
+  const riwayatSudahDicatat = useRef(false)
 
   useEffect(() => {
     if (!materi) return
