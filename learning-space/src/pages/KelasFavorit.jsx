@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import logo from '../assets/logo.png'
 import ilustrasiFavorit from '../assets/ilustrasi-favorit.png'
@@ -35,8 +35,6 @@ const menuItems = [
   { key: 'reminder',  label: 'Reminder',           path: '/reminder',  icon: <IconReminder /> },
 ]
 
-
-
 export default function KelasFavorit() {
   const navigate = useNavigate()
   const [activeMenu, setActiveMenu] = useState('favorit')
@@ -50,12 +48,8 @@ export default function KelasFavorit() {
   const [adding,  setAdding]  = useState(false)
   const [errorMsg, setErrorMsg] = useState('')
 
-  const storedUser = JSON.parse(localStorage.getItem('user') || 'null')
-  const userName   = storedUser?.nama || 'Pengguna'
-
   // ── FETCH FAVORIT USER ──────────────────────────────────────
   const fetchFavorit = async () => {
-    setLoading(true)
     setErrorMsg('')
     try {
       const res = await api.get('/favorit')
