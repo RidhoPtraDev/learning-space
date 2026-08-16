@@ -1,8 +1,21 @@
 const { Sequelize } = require('sequelize')
+require('dns').setDefaultResultOrder('ipv4first')
 require('dotenv').config()
 
-const sequelize = (process.env.MYSQL_URL || process.env.DATABASE_URL)
-  ? new Sequelize(process.env.MYSQL_URL || process.env.DATABASE_URL, {
+let dbUrl = process.env.MYSQL_URL || process.env.DATABASE_URL
+if (dbUrl) {
+  const targetDb = process.env.DB_NAME || 'learning_space'
+  try {
+    const parsed = new URL(dbUrl)
+    parsed.pathname = `/${targetDb}`
+    dbUrl = parsed.toString()
+  } catch (e) {
+    // fallback if string URL parsing fails
+  }
+}
+
+const sequelize = dbUrl
+  ? new Sequelize(dbUrl, {
       dialect: 'mysql',
       logging: false,
       dialectOptions: {
