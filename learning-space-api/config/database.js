@@ -14,17 +14,11 @@ if (dbUrl) {
   }
 }
 
-const isRemoteDb = Boolean(
-  process.env.DB_SSL === 'true' ||
-  (process.env.DB_HOST && process.env.DB_HOST !== '127.0.0.1' && process.env.DB_HOST !== 'localhost') ||
-  (dbUrl && !dbUrl.includes('127.0.0.1') && !dbUrl.includes('localhost'))
-)
-
 const dialectOptions = {
   connectTimeout: 30000
 }
 
-if (isRemoteDb) {
+if (process.env.DB_SSL === 'true') {
   dialectOptions.ssl = {
     rejectUnauthorized: false
   }
