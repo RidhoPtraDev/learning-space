@@ -1,4 +1,4 @@
-require('dns').setDefaultResultOrder('ipv4first')
+require('dns').setDefaultResultOrder('verbatim')
 const express = require('express')
 const cors    = require('cors')
 require('dotenv').config()

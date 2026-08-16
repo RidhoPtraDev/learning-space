@@ -1,5 +1,5 @@
 const { Sequelize } = require('sequelize')
-require('dns').setDefaultResultOrder('ipv4first')
+require('dns').setDefaultResultOrder('verbatim')
 require('dotenv').config()
 
 let dbUrl = process.env.MYSQL_URL || process.env.DATABASE_URL
