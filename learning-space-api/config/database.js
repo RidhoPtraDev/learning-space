@@ -14,16 +14,27 @@ if (dbUrl) {
   }
 }
 
+const isRemoteDb = Boolean(
+  process.env.DB_SSL === 'true' ||
+  (process.env.DB_HOST && process.env.DB_HOST !== '127.0.0.1' && process.env.DB_HOST !== 'localhost') ||
+  (dbUrl && !dbUrl.includes('127.0.0.1') && !dbUrl.includes('localhost'))
+)
+
+const dialectOptions = {
+  connectTimeout: 30000
+}
+
+if (isRemoteDb) {
+  dialectOptions.ssl = {
+    rejectUnauthorized: false
+  }
+}
+
 const sequelize = dbUrl
   ? new Sequelize(dbUrl, {
       dialect: 'mysql',
       logging: false,
-      dialectOptions: {
-        connectTimeout: 30000,
-        ssl: {
-          rejectUnauthorized: false
-        }
-      }
+      dialectOptions
     })
   : new Sequelize(
       process.env.DB_NAME || 'learning_space',
@@ -34,12 +45,7 @@ const sequelize = dbUrl
         port: process.env.DB_PORT || 3306,
         dialect: 'mysql',
         logging: false,
-        dialectOptions: {
-          connectTimeout: 30000,
-          ssl: {
-            rejectUnauthorized: false
-          }
-        }
+        dialectOptions
       }
     )
 
