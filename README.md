@@ -1,8 +1,8 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/RidhoPtraDev/learning-space/main/learning-space/src/assets/logo.png" alt="Logo LearningSpace" height="90" />
+  <img src="https://raw.githubusercontent.com/RidhoPtraDev/learning-space/main/learning-space/src/assets/logo.png" alt="Logo LearningSpace" height="135" />
   
-  # Platform LearningSpace
-  ### *Arsitektur Pembelajaran Daring Modern untuk Pelajar Indonesia*
+  <h2>LearningSpace</h2>
+  <p><strong>Arsitektur Pembelajaran Daring Modern untuk Pelajar Indonesia</strong></p>
 
   <p align="center">
     Platform ekosistem pembelajaran digital komprehensif, tangguh, dan terukur yang dirancang khusus untuk pelajar modern Indonesia. Dibangun dengan arsitektur <strong>Klien-Server Terpisah</strong>, <strong>API Tanpa Server (Serverless)</strong>, dan <strong>Basis Data Komputasi Awan (Cloud Database)</strong>.
