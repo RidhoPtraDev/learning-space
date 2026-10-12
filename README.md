@@ -5,7 +5,11 @@
 <h1 align="center">LearningSpace</h1>
 
 <p align="center">
-  <strong>Platform Pembelajaran Daring Modern & Terintegrasi Berbasis Web</strong>
+  <strong>Sistem Pembelajaran Daring Modern & Terintegrasi Berbasis Web dengan Arsitektur Klien-Server Terpisah, API Tanpa Server (Serverless), dan Basis Data Awan</strong>
+</p>
+
+<p align="center">
+  Platform ekosistem pembelajaran digital komprehensif, tangguh, dan terukur yang dirancang khusus untuk pelajar modern Indonesia. Menghadirkan modul multimedia interaktif, tatap muka daring Zoom, analitik progres belajar real-time, serta sistem pengingat otomatis.
 </p>
 
 <p align="center">
