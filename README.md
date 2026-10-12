@@ -1,27 +1,27 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/RidhoPtraDev/learning-space/main/learning-space/src/assets/logo.png" alt="LearningSpace Enterprise Logo" height="90" />
+  <img src="https://raw.githubusercontent.com/RidhoPtraDev/learning-space/main/learning-space/src/assets/logo.png" alt="Logo LearningSpace" height="90" />
   
-  # LearningSpace Platform
-  ### *Enterprise-Grade E-Learning Architecture & Modern Student Engagement Platform*
+  # Platform LearningSpace
+  ### *Arsitektur Pembelajaran Daring Modern untuk Pelajar Indonesia*
 
   <p align="center">
-    Platform ekosistem pembelajaran digital komprehensif, tangguh, dan terukur yang dirancang khusus untuk pelajar modern Indonesia. Dibangun dengan arsitektur <strong>Decoupled Client-Server</strong>, <strong>Serverless Micro-API</strong>, dan <strong>High-Availability Cloud Database</strong>.
+    Platform ekosistem pembelajaran digital komprehensif, tangguh, dan terukur yang dirancang khusus untuk pelajar modern Indonesia. Dibangun dengan arsitektur <strong>Klien-Server Terpisah</strong>, <strong>API Tanpa Server (Serverless)</strong>, dan <strong>Basis Data Komputasi Awan (Cloud Database)</strong>.
   </p>
 
   <p align="center">
-    <a href="https://learning-space-user.vercel.app"><img src="https://img.shields.io/badge/Production%20Web-Live%20App-0066FF?style=for-the-badge&logo=vercel&logoColor=white" alt="Live App" /></a>
-    <a href="https://learning-space-api.vercel.app"><img src="https://img.shields.io/badge/Serverless%20API-v1.0.0-09B6A2?style=for-the-badge&logo=fastapi&logoColor=white" alt="Live API" /></a>
-    <a href="https://aiven.io"><img src="https://img.shields.io/badge/Cloud%20Database-Aiven%20MySQL%208.4-FF3E00?style=for-the-badge&logo=mysql&logoColor=white" alt="Database" /></a>
+    <a href="https://learning-space-user.vercel.app"><img src="https://img.shields.io/badge/Aplikasi%20Web-Online-0066FF?style=for-the-badge&logo=vercel&logoColor=white" alt="Aplikasi Web" /></a>
+    <a href="https://learning-space-api.vercel.app"><img src="https://img.shields.io/badge/API%20Serverless-v1.0.0-09B6A2?style=for-the-badge&logo=fastapi&logoColor=white" alt="API Serverless" /></a>
+    <a href="https://aiven.io"><img src="https://img.shields.io/badge/Basis%20Data-Aiven%20MySQL%208.4-FF3E00?style=for-the-badge&logo=mysql&logoColor=white" alt="Basis Data" /></a>
   </p>
 
   <p align="center">
-    <img src="https://img.shields.io/badge/Architecture-Decoupled%20Monorepo-blue?style=flat-square" />
+    <img src="https://img.shields.io/badge/Arsitektur-Monorepo%20Terpisah-blue?style=flat-square" />
     <img src="https://img.shields.io/badge/Frontend-React%2019%20%2B%20Vite%208-61DAFB?style=flat-square&logo=react&logoColor=black" />
     <img src="https://img.shields.io/badge/Backend-Node.js%20%2F%20Express%20Serverless-339933?style=flat-square&logo=nodedotjs&logoColor=white" />
-    <img src="https://img.shields.io/badge/Database%20ORM-Sequelize%20v6-52B0E7?style=flat-square&logo=sequelize&logoColor=white" />
-    <img src="https://img.shields.io/badge/Security-JWT%20%2B%20BCrypt%20%2B%20OTP-red?style=flat-square&logo=jsonwebtokens&logoColor=white" />
-    <img src="https://img.shields.io/badge/CI%2FCD-Vercel%20Edge%20Network-black?style=flat-square&logo=vercel&logoColor=white" />
-    <img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" />
+    <img src="https://img.shields.io/badge/ORM-Sequelize%20v6-52B0E7?style=flat-square&logo=sequelize&logoColor=white" />
+    <img src="https://img.shields.io/badge/Keamanan-JWT%20%2B%20BCrypt%20%2B%20OTP-red?style=flat-square&logo=jsonwebtokens&logoColor=white" />
+    <img src="https://img.shields.io/badge/Penyebaran-Jaringan%20Vercel%20Edge-black?style=flat-square&logo=vercel&logoColor=white" />
+    <img src="https://img.shields.io/badge/Lisensi-MIT-yellow?style=flat-square" />
   </p>
 </div>
 
@@ -29,52 +29,52 @@
 
 ## 📌 Daftar Isi
 - [Ikhtisar Platform](#-ikhtisar-platform)
-- [Arsitektur Sistem Tingkat Perusahaan](#-arsitektur-sistem-tingkat-perusahaan)
-- [Fitur Utama & Domain Bisnis](#-fitur-utama--domain-bisnis)
+- [Arsitektur Sistem](#-arsitektur-sistem)
+- [Fitur Utama](#-fitur-utama)
 - [Struktur Monorepo Repository](#-struktur-monorepo-repository)
-- [Tata Kelola Tim & Strategi Branching](#-tata-kelola-tim--strategi-branching)
+- [Tata Kelola Tim & Pembagian Cabang Kerja](#-tata-kelola-tim--pembagian-cabang-kerja)
 - [Standar Keamanan & Perlindungan Data](#-standar-keamanan--perlindungan-data)
 - [Panduan Instalasi & Pengembangan Lokal](#-panduan-instalasi--pengembangan-lokal)
-- [Spesifikasi REST API Terpilih](#-spesifikasi-rest-api-terpilih)
-- [Alur CI/CD & Deployment](#-alur-cicd--deployment)
+- [Spesifikasi REST API](#-spesifikasi-rest-api)
+- [Alur Integrasi & Penyebaran Otomatis (CI/CD)](#-alur-integrasi--penyebaran-otomatis-cicd)
 - [Lisensi & Kontribusi](#-lisensi--kontribusi)
 
 ---
 
 ## 💡 Ikhtisar Platform
 
-**LearningSpace** adalah platform ed-tech end-to-end yang memadukan materi multimedia, ruang kelas virtual interaktif (Zoom integration), analisis progres belajar real-time, dan manajemen otomatisasi pengingat (*Reminder Engine*). 
+**LearningSpace** adalah platform teknologi pendidikan (*ed-tech*) menyeluruh yang memadukan modul multimedia, ruang kelas virtual interaktif (integrasi Zoom), analisis progres belajar waktu nyata (*real-time*), dan sistem otomatisasi pengingat jadwal belajar (*Reminder Engine*). 
 
-Dikembangkan mengacu pada standar rekayasa perangkat lunak perusahaan teknologi modern (*Big Tech Standard*), sistem ini memisahkan secara modular antara **Portal Pengguna (User Experience)**, **Pusat Kendali Administrasi (Backoffice Command Center)**, dan **Core Micro-API** berdaya tahan tinggi.
+Sistem ini memisahkan secara modular antara **Portal Pengguna (Pengalaman Belajar Pelajar)**, **Pusat Kendali Admin (Dasbor Pengelola)**, dan **Layanan API Tanpa Server (Serverless Micro-API)** berdaya tahan tinggi.
 
 ---
 
-## 🏛️ Arsitektur Sistem Tingkat Perusahaan
+## 🏛️ Arsitektur Sistem
 
-Platform didesain mengusung arsitektur decoupled berorientasi cloud (*Cloud-Native Decoupled Architecture*):
+Platform didesain mengusung arsitektur berbasis komputasi awan yang modular dan terpisah:
 
 ```mermaid
 flowchart TD
-    subgraph ClientLayer["🖥️ Presentation & Edge Layer (Clients)"]
-        U["🌐 User Web App\n(React 19 + Vite 8)\nlearning-space-user.vercel.app"]
-        A["🛡️ Admin Backoffice\n(React 19 + Vite 8)\nInternal Network / Localhost"]
+    subgraph LayerKlien["🖥️ Lapisan Antarmuka Pengguna (Klien)"]
+        U["🌐 Aplikasi Web Pengguna\n(React 19 + Vite 8)\nlearning-space-user.vercel.app"]
+        A["🛡️ Dasbor Pengelola Admin\n(React 19 + Vite 8)\nJaringan Internal / Localhost"]
     end
 
-    subgraph EdgeCDN["⚡ Global Edge Routing (Vercel CDN)"]
-        VercelEdge["Vercel Global Anycast Edge Network\nTLS 1.3 / Brotli / Asset Cache"]
+    subgraph LayerJaringan["⚡ Jaringan Distribusi Global (Vercel CDN)"]
+        VercelEdge["Jaringan Global Vercel Anycast Edge\nProtokol TLS 1.3 / Kompresi Brotli / Cache Aset"]
     end
 
-    subgraph ComputeLayer["⚙️ Serverless Compute Layer (Backend)"]
-        API["Node.js Express Serverless Engine\nlearning-space-api.vercel.app\n- JWT Authorization Guard\n- Transaction Handlers\n- Rate Limit & Validation"]
+    subgraph LayerKomputasi["⚙️ Lapisan Komputasi Backend (Serverless)"]
+        API["Layanan Backend Node.js Express Serverless\nlearning-space-api.vercel.app\n- Verifikasi Token Akses JWT\n- Penanganan Transaksi Data\n- Validasi & Batasan Permintaan"]
     end
 
-    subgraph ServiceLayer["🔌 Third-Party & Cloud Services"]
-        Mailer["📧 Google Cloud SMTP\nTransaksional Email OTP (Nodemailer)"]
-        ZoomSvc["📹 Zoom Integration Engine\nMeeting Orchestration"]
+    subgraph LayerLayanan["🔌 Layanan Eksternal & Pihak Ketiga"]
+        Mailer["📧 Layanan Email Transaksional Google SMTP\nPengiriman Kode OTP Otomatis (Nodemailer)"]
+        ZoomSvc["📹 Layanan Pertemuan Daring Zoom\nSinkronisasi Jadwal Tatap Muka"]
     end
 
-    subgraph PersistenceLayer["🗄️ Persistence & Storage Layer (Cloud)"]
-        AivenDB[("☁️ Aiven MySQL 8.4 Managed Cloud\n- TLS / SSL Enforced Connection\n- Automatic Failover & Replication\n- Optimized InnoDB Pooling")]
+    subgraph LayerPenyimpanan["🗄️ Lapisan Penyimpanan Data (Basis Data Cloud)"]
+        AivenDB[("☁️ Basis Data Terkelola Aiven MySQL 8.4\n- Enkripsi Koneksi Wajib TLS/SSL\n- Pemulihan Otomatis & Replikasi Data\n- Optimasi Kumpulan Koneksi InnoDB")]
     end
 
     U --> VercelEdge
@@ -87,21 +87,21 @@ flowchart TD
 
 ---
 
-## ✨ Fitur Utama & Domain Bisnis
+## ✨ Fitur Utama
 
-### 1. 🎓 Student Experience Ecosystem (`learning-space`)
-* **Multi-Factor Authentication & Recovery**: Otentikasi aman berbasis JWT (JSON Web Token), verifikasi email instan dengan OTP 6-digit transaksional, serta alur pemulihan kata sandi (*Forgot Password flow*).
-* **Interactive Class Discovery**: Katalog kelas terstruktur (Kimia, Matematika, Fisika, Sejarah, Bahasa Indonesia, Komputer) lengkap dengan video player adaptif, ringkasan materi, dan progress checklist.
-* **Smart Favorit & Riwayat Belajar**: Pengarsipan otomatis modul yang dipelajari secara non-blocking (*Optimistic UI update*).
-* **Live Synchronous Sessions**: Integrasi jadwal tatap muka daring melalui modul Zoom Meeting terkurasi.
-* **Learning Analytics & Insights**: Visualisasi diagram kemajuan belajar, retensi harian (*learning streak*), dan kalkulasi persentase ketuntasan kurikulum.
-* **Custom Reminder Engine**: Sistem pengingat jadwal belajar dan sesi tatap muka terintegrasi.
+### 1. 🎓 Portal Belajar Pengguna (`learning-space`)
+* **Otentikasi & Pemulihan Akun Aman**: Masuk dan pendaftaran aman berbasis JWT (JSON Web Token), verifikasi akun dengan kode OTP 6-digit via email, serta alur reset kata sandi (*Lupa Kata Sandi*).
+* **Penjelajahan Kelas Terstruktur**: Modul pembelajaran interaktif (Kimia, Matematika, Fisika, Sejarah, Bahasa Indonesia, Komputer) dilengkapi pemutar video, rangkuman teks, dan status ketuntasan bab.
+* **Kelas Favorit & Riwayat Belajar**: Pengarsipan otomatis modul yang sedang atau telah dipelajari dengan pembaruan tampilan langsung (*Optimistic UI*).
+* **Sesi Belajar Langsung (Tatap Muka)**: Integrasi informasi jadwal kelas tatap muka daring melalui Zoom Meeting.
+* **Analisis & Statistik Kemajuan Belajar**: Visualisasi diagram progres materi, rekam jejak konsistensi belajar harian (*streak*), dan persentase ketuntasan kurikulum.
+* **Pengingat Jadwal Belajar**: Manajemen jadwal pengingat belajar mandiri terintegrasi di bilah samping (*Sidebar Reminder*).
 
-### 2. 🛡️ Administrative Command Center (`learning-space-admin`)
-* **Live System Metrics**: Ringkasan metrik analitik (total peserta, katalog kelas aktif, load materi, sesi zoom berjalan).
-* **User Governance & Moderation**: Manajemen izin akses, status penangguhan (*soft-ban/unban*), dan kontrol akun.
-* **Curriculum Lifecycle Management**: Manajemen CRUD penuh silabus, penataan materi, video embed, dan aset modul.
-* **Feedback & Service Catalog**: Moderasi ulasan testimoni peserta dan manajemen paket layanan platform.
+### 2. 🛡️ Dasbor Pusat Kendali Admin (`learning-space-admin`)
+* **Statistik Sistem Terkini**: Ringkasan data menyeluruh (total peserta terdaftar, jumlah kelas aktif, total modul materi, dan sesi pertemuan daring berjalan).
+* **Manajemen & Moderasi Pengguna**: Pengelolaan hak akses, pemblokiran/pembukaan akun pengguna (*suspend/unsuspend*), dan pembersihan akun.
+* **Pengelolaan Kurikulum & Silabus**: Tambah, edit, dan hapus silabus mata pelajaran, urutan materi modul, tautan video, serta deskripsi modul.
+* **Ulasan & Katalog Layanan**: Moderasi testimoni kepuasan pelajar dan pengelolaan daftar paket layanan yang tersedia.
 
 ---
 
@@ -109,153 +109,153 @@ flowchart TD
 
 ```text
 Project PemWeb/
-├── .gitignore                      # Global git exclusion (Node, OS, logs, secrets)
-├── README.md                       # Enterprise Technical Documentation
-├── CONTRIBUTING.md                 # Developer workflow & git guidelines
-├── CHANGELOG.md                    # Release history & breaking changes
+├── .gitignore                      # Pengecualian berkas git global (Node, sistem operasi, log)
+├── README.md                       # Dokumentasi teknis proyek dalam Bahasa Indonesia
+├── CONTRIBUTING.md                 # Panduan kolaborasi dan alur kerja pengembang
+├── CHANGELOG.md                    # Catatan riwayat pembaruan versi
 │
-├── learning-space/                 # 🚀 Client: Portal Pelajar (User Facing Web)
+├── learning-space/                 # 🚀 Klien: Portal Pengguna (Aplikasi Web Pelajar)
 │   ├── src/
-│   │   ├── api/axios.js            # Axios client instance (interceptor & JWT injection)
-│   │   ├── components/             # Reusable atomic UI components (Sidebar, Badges, etc.)
-│   │   ├── pages/                  # Route view components (Dashboard, KelasDetail, Profil)
-│   │   └── App.jsx                 # Lazy-loaded route definitions with Suspense boundary
-│   ├── vercel.json                 # Single-Page-Application (SPA) edge rewrites
+│   │   ├── api/axios.js            # Klien HTTP Axios dengan injeksi token JWT otomatis
+│   │   ├── components/             # Komponen antarmuka yang dapat digunakan kembali
+│   │   ├── pages/                  # Halaman aplikasi (Dasbor, Detail Kelas, Profil, dll.)
+│   │   └── App.jsx                 # Konfigurasi rute dengan pemuatan dinamis (lazy load)
+│   ├── vercel.json                 # Pengalihan rute aplikasi halaman tunggal (SPA)
 │   └── package.json
 │
-├── learning-space-admin/           # 🛡️ Backoffice: Portal Operator & Administrator
+├── learning-space-admin/           # 🛡️ Pengelola: Portal Khusus Operator & Administrator
 │   ├── src/
-│   │   ├── api/axios.js            # Admin authorized Axios client
-│   │   ├── pages/                  # Backoffice modules (ManajemenUser, Kelas, Analytics)
+│   │   ├── api/axios.js            # Klien Axios dengan autentikasi admin
+│   │   ├── pages/                  # Modul kelola admin (Manajemen Pengguna, Kelas, dll.)
 │   │   └── App.jsx
 │   └── package.json
 │
-└── learning-space-api/             # ⚙️ Core: RESTful Serverless Micro-API
+└── learning-space-api/             # ⚙️ Inti: Layanan RESTful API Tanpa Server (Serverless)
     ├── config/
-    │   └── database.js             # High-resilience Sequelize instance (SSL auto-negotiation)
-    ├── controllers/                # Business logic separation (auth, user, kelas, analitik)
-    ├── middleware/                 # JWT Auth, role verification, safe serverless upload
-    ├── models/                     # Relational entity definitions (ORM Model Schemas)
-    ├── routes/                     # Granular REST endpoint routes
-    ├── utils/                      # Helper modules (SMTP Mailer, Validators)
-    ├── server.js                   # Application bootstrap & Vercel Serverless entrypoint
-    ├── vercel.json                 # Serverless builder specification (@vercel/node)
+    │   └── database.js             # Konfigurasi ORM Sequelize dengan negosiasi SSL otomatis
+    ├── controllers/                # Logika bisnis (autentikasi, pengguna, kelas, analitik)
+    ├── middleware/                 # Middleware otentikasi JWT, hak akses, dan batas unggah
+    ├── models/                     # Definisi entitas tabel basis data relasional
+    ├── routes/                     # Penentuan rute REST API
+    ├── utils/                      # Fungsi utilitas (pengirim email SMTP, validator)
+    ├── server.js                   # Berkas utama aplikasi & entry point Vercel Serverless
+    ├── vercel.json                 # Spesifikasi pembangunan fungsi tanpa server Vercel
     └── package.json
 ```
 
 ---
 
-## 👥 Tata Kelola Tim & Strategi Branching
+## 👥 Tata Kelola Tim & Pembagian Cabang Kerja
 
-Repository ini menerapkan standardisasi **Trunk-Based Collaborative Branching** dengan pemisahan tugas berbasis kapabilitas (*Domain-Driven Responsibility*):
+Repository ini menerapkan standardisasi alur kerja kolaboratif dengan pembagian tugas yang jelas untuk setiap anggota tim:
 
-| Anggota Tim | Peran Teknis (*Technical Role*) | Tanggung Jawab Modul | Branch Kerja Terisolasi |
+| Anggota Tim | Peran Teknis | Tanggung Jawab Modul | Cabang Kerja GitHub (*Branch*) |
 |:---|:---|:---|:---|
-| **Ridho Putra Aulia** | **Tech Lead & Backend Architect** | REST Micro-API, Database Engine, Serverless Deployment, Admin Core | [`backend/ridho-putra`](https://github.com/RidhoPtraDev/learning-space/tree/backend/ridho-putra)<br>[`admin/ridho-putra`](https://github.com/RidhoPtraDev/learning-space/tree/admin/ridho-putra)<br>[`database/ridho-putra`](https://github.com/RidhoPtraDev/learning-space/tree/database/ridho-putra) |
-| **Arviandra Deska** | **Lead Frontend Engineer** | User Interface Portal, State Management, Client Routing, API Integration | [`frontend/arviandra-deska`](https://github.com/RidhoPtraDev/learning-space/tree/frontend/arviandra-deska) |
-| **Muhammad Lukman** | **Product & UI/UX Designer** | Desain Interaksi, Komponen Visual, User Journey, Brand Guideline | [`ui-ux/muhammad-lukman`](https://github.com/RidhoPtraDev/learning-space/tree/ui-ux/muhammad-lukman) |
-| **Release Maintainer** | **DevOps & Release Engineer** | Staging, Quality Assurance, Production Rollout | [`main`](https://github.com/RidhoPtraDev/learning-space/tree/main) |
+| **Ridho Putra Aulia** | **Arsitek Backend & Pimpinan Teknis** | API Serverless, Pengelolaan Basis Data, Penyebaran Cloud, Sistem Admin | [`backend/ridho-putra`](https://github.com/RidhoPtraDev/learning-space/tree/backend/ridho-putra)<br>[`admin/ridho-putra`](https://github.com/RidhoPtraDev/learning-space/tree/admin/ridho-putra)<br>[`database/ridho-putra`](https://github.com/RidhoPtraDev/learning-space/tree/database/ridho-putra) |
+| **Arviandra Deska** | **Pimpinan Pengembang Frontend** | Antarmuka Pengguna Web, Manajemen State Klien, Integrasi API | [`frontend/arviandra-deska`](https://github.com/RidhoPtraDev/learning-space/tree/frontend/arviandra-deska) |
+| **Muhammad Lukman** | **Desainer Produk & UI/UX** | Desain Pengalaman Pengguna, Tata Letak Visual, Panduan Gaya Antarmuka | [`ui-ux/muhammad-lukman`](https://github.com/RidhoPtraDev/learning-space/tree/ui-ux/muhammad-lukman) |
+| **Pengelola Rilis** | **Insinyur DevOps & Rilis** | Pengujian Integrasi, Uji Kualitas, dan Penerbitan Produksi | [`main`](https://github.com/RidhoPtraDev/learning-space/tree/main) |
 
 ---
 
 ## 🔒 Standar Keamanan & Perlindungan Data
 
-* **Zero-Secret Commitment**: Kredensial sensitif (`JWT_SECRET`, database URI, SMTP tokens) **tidak pernah** dimasukkan ke dalam version control. Seluruh rahasia dikelola melalui *Vercel Encrypted Environment Secrets*.
-* **SQL Injection Mitigation**: Menggunakan ORM *Sequelize* dengan parameterized prepared statements secara menyeluruh.
-* **Cryptographic Hashing**: Seluruh kata sandi pengguna dienkripsi menggunakan algoritma `bcryptjs` dengan *adaptive salt rounds*.
-* **Transport Security**: Enkripsi penuh **HTTPS / TLS 1.3** pada layer web server dan **SSL/TLS encrypted socket** saat berkomunikasi dengan Aiven Cloud Database.
-* **Granular Role-Based Access Control (RBAC)**: Pemisahan tegas hak akses `user` dan `admin` melalui middleware verifikasi claims token JWT.
+* **Pencegahan Kebocoran Kredensial**: Informasi sensitif (`JWT_SECRET`, URL basis data, sandi email) **tidak disimpan** di dalam repositori publik. Seluruh kredensial dikelola melalui *Environment Variables* terenkripsi di platform Vercel.
+* **Perlindungan Terhadap SQL Injection**: Menggunakan ORM *Sequelize* dengan mekanisme *parameterized queries* pada seluruh manipulasi data.
+* **Enkripsi Kata Sandi**: Seluruh kata sandi pengguna dienkripsi menggunakan algoritma *hashing* `bcryptjs` sebelum disimpan ke basis data.
+* **Keamanan Jalur Komunikasi**: Seluruh pertukaran data dilindungi protokol **HTTPS / TLS 1.3** di sisi web serta sambungan terenkripsi **SSL/TLS** antara server API dan basis data Aiven Cloud.
+* **Kendali Akses Berbasis Peran (RBAC)**: Pemisahan hak akses antara akun `user` dan `admin` yang diverifikasi secara ketat pada setiap permintaan API.
 
 ---
 
 ## 🚀 Panduan Instalasi & Pengembangan Lokal
 
 ### 📋 Prasyarat Sistem
-* [Node.js](https://nodejs.org/) versi `>= 18.x` (Disarankan v20 LTS atau v22)
+* [Node.js](https://nodejs.org/) versi `>= 18.x` (Direkomendasikan v20 LTS atau v22)
 * [Git](https://git-scm.com/)
-* Database MySQL (XAMPP lokal untuk pengujian offline, atau koneksi Aiven Cloud)
+* Basis data MySQL (dapat menggunakan XAMPP untuk pengujian lokal, atau koneksi Aiven Cloud)
 
-### 1. Kloning Repository
+### 1. Salin Repositori (Clone)
 ```bash
 git clone https://github.com/RidhoPtraDev/learning-space.git
 cd learning-space
 ```
 
-### 2. Konfigurasi & Menjalankan Backend API
+### 2. Konfigurasi dan Jalankan Layanan API Backend
 ```bash
 cd learning-space-api
 npm install
 
-# Buat file .env dari template
+# Buat berkas .env dari contoh yang tersedia
 cp .env.example .env
 
-# Jalankan server dalam mode development
+# Jalankan server dalam mode pengembangan lokal
 npm run dev
 ```
-> Server API akan aktif pada: `http://localhost:5000`
+> Server API akan aktif pada alamat: `http://localhost:5000`
 
-### 3. Menjalankan Portal Pengguna (Frontend User)
+### 3. Jalankan Portal Belajar Pengguna (Frontend User)
 ```bash
 cd ../learning-space
 npm install
 npm run dev
 ```
-> Portal Pengguna akan aktif pada: `http://localhost:5173`
+> Portal Pengguna akan aktif pada alamat: `http://localhost:5173`
 
-### 4. Menjalankan Backoffice Admin (Frontend Admin)
+### 4. Jalankan Dasbor Admin (Frontend Admin)
 ```bash
 cd ../learning-space-admin
 npm install
 npm run dev
 ```
-> Backoffice Admin akan aktif pada: `http://localhost:5174`
+> Dasbor Admin akan aktif pada alamat: `http://localhost:5174`
 
 ---
 
-## 📡 Spesifikasi REST API Terpilih
+## 📡 Spesifikasi REST API
 
-| Method | Endpoint | Akses | Deskripsi |
+| Metode | Titik Akhir (*Endpoint*) | Akses | Keterangan |
 |:---:|:---|:---:|:---|
-| `POST` | `/api/auth/register` | Publik | Pendaftaran akun baru & pengiriman OTP |
-| `POST` | `/api/auth/verify-otp` | Publik | Validasi OTP 6-digit & aktivasi akun |
-| `POST` | `/api/auth/login` | Publik | Otentikasi kredensial & penerbitan Bearer Token |
-| `POST` | `/api/auth/forgot-password`| Publik | Permintaan pemulihan akun via OTP email |
-| `GET`  | `/api/users/profile` | Terotentikasi | Mendapatkan data profil pengguna aktif |
-| `PUT`  | `/api/users/profile` | Terotentikasi | Memperbarui data pengguna |
-| `GET`  | `/api/kelas` | Terotentikasi | Katalog seluruh mata pelajaran & modul |
-| `GET`  | `/api/kelas/:id` | Terotentikasi | Rincian silabus dan bab materi spesifik |
-| `GET`  | `/api/favorit` | Terotentikasi | Daftar kelas yang disimpan pengguna |
-| `GET`  | `/api/analitik/progress` | Terotentikasi | Metrik analitik ketuntasan & aktivitas |
-| `GET`  | `/api/admin/dashboard` | Admin Only | Ringkasan metrik kesehatan sistem |
+| `POST` | `/api/auth/register` | Publik | Pendaftaran akun baru dan pengiriman kode verifikasi OTP |
+| `POST` | `/api/auth/verify-otp` | Publik | Validasi kode OTP 6-digit untuk aktivasi akun |
+| `POST` | `/api/auth/login` | Publik | Verifikasi kredensial dan penerbitan token akses JWT |
+| `POST` | `/api/auth/forgot-password`| Publik | Permintaan kode OTP untuk reset kata sandi |
+| `GET`  | `/api/users/profile` | Wajib Login | Mengambil informasi profil akun yang sedang masuk |
+| `PUT`  | `/api/users/profile` | Wajib Login | Memperbarui informasi profil pengguna |
+| `GET`  | `/api/kelas` | Wajib Login | Mengambil seluruh katalog mata pelajaran |
+| `GET`  | `/api/kelas/:id` | Wajib Login | Mengambil rincian materi dari kelas tertentu |
+| `GET`  | `/api/favorit` | Wajib Login | Mengambil daftar kelas favorit yang disimpan pengguna |
+| `GET`  | `/api/analitik/progress` | Wajib Login | Mengambil ringkasan statistik dan progres belajar |
+| `GET`  | `/api/admin/dashboard` | Khusus Admin | Mengambil data metrik sistem untuk dasbor pengelola |
 
 ---
 
-## 🔄 Alur CI/CD & Deployment
+## 🔄 Alur Integrasi & Penyebaran Otomatis (CI/CD)
 
 ```
-[Git Commit] ──> [GitHub Main Push Protection] ──> [Vercel Automated Webhook]
-                                                              │
-                     ┌────────────────────────────────────────┴────────────────────────────────────────┐
-                     ▼                                                                                 ▼
-          [Frontend Vite Production Build]                                             [@vercel/node Serverless Build]
-          - Code Splitting & Chunking                                                  - MySQL2 Dynamic Module Linking
-          - Asset Minification (Gzip/Brotli)                                           - Environment Secret Injection
-                     │                                                                                 │
-                     ▼                                                                                 ▼
-         [Deploy: learning-space-user]                                                 [Deploy: learning-space-api]
+[Komit Git] ──> [Pemeriksaan Keamanan Rahasia GitHub] ──> [Pemicu Otomatis Vercel]
+                                                                    │
+                     ┌──────────────────────────────────────────────┴──────────────────────────────────────────────┐
+                     ▼                                                                                             ▼
+          [Pembangunan Produksi Frontend Vite]                                                         [Pembangunan API Serverless]
+          - Pemisahan Kode (*Code Splitting*)                                                          - Integrasi Dinamis Driver MySQL2
+          - Minifikasi Aset (*Brotli & Gzip*)                                                          - Injeksi Kredensial Terenkripsi
+                     │                                                                                             │
+                     ▼                                                                                             ▼
+       [Aplikasi Web: learning-space-user]                                                           [Layanan API: learning-space-api]
 ```
 
-* **Production URL User**: [https://learning-space-user.vercel.app](https://learning-space-user.vercel.app)
-* **Production URL API**: [https://learning-space-api.vercel.app](https://learning-space-api.vercel.app)
+* **Alamat Aplikasi Web Pengguna**: [https://learning-space-user.vercel.app](https://learning-space-user.vercel.app)
+* **Alamat Layanan API**: [https://learning-space-api.vercel.app](https://learning-space-api.vercel.app)
 
 ---
 
 ## 📜 Lisensi & Kontribusi
 
-Didistribusikan di bawah lisensi resmi **MIT License**. Kunjungi file [`LICENSE`](./LICENSE) untuk rincian ketentuan hukum.
+Didistribusikan di bawah naungan **Lisensi MIT**. Silakan buka berkas [`LICENSE`](./LICENSE) untuk membaca ketentuan lisensi lengkap.
 
-Panduan kontribusi teknis dan alur pull request dapat dipelajari pada berkas **[CONTRIBUTING.md](./CONTRIBUTING.md)**.
+Panduan kontribusi teknis dan alur pengajuan perubahan dapat dibaca pada berkas **[CONTRIBUTING.md](./CONTRIBUTING.md)**.
 
 <div align="center">
-  <sub>Dibangun dengan dedikasi untuk memajukan kualitas teknologi pendidikan di Indonesia. © 2026 LearningSpace Team.</sub>
+  <sub>Dibangun dengan dedikasi untuk mendukung kemajuan pendidikan berkualitas bagi pelajar di seluruh Indonesia. © 2026 Tim Pengembang LearningSpace.</sub>
 </div>
