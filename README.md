@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/RidhoPtraDev/learning-space/main/learning-space/src/assets/logo.png" alt="LearningSpace Logo" width="130" height="130" style="border-radius: 20%;" />
+  <img src="https://raw.githubusercontent.com/RidhoPtraDev/learning-space/main/learning-space/src/assets/logo.png" alt="LearningSpace Logo" height="60" />
 </p>
 
 <h1 align="center">LearningSpace</h1>
