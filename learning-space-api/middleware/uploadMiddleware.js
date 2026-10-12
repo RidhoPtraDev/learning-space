@@ -18,9 +18,13 @@ const imageFileFilter = (req, file, cb) => {
 function buatStorage(subfolder) {
   const tujuanFolder = path.join(__dirname, '..', 'uploads', subfolder)
 
-  // Pastikan foldernya ada (jaga-jaga kalau .gitkeep ke-hapus/folder belum ada)
-  if (!fs.existsSync(tujuanFolder)) {
-    fs.mkdirSync(tujuanFolder, { recursive: true })
+  // Pastikan foldernya ada jika diizinkan menulis (di Vercel serverless gunakan /tmp)
+  try {
+    if (!fs.existsSync(tujuanFolder)) {
+      fs.mkdirSync(tujuanFolder, { recursive: true })
+    }
+  } catch (err) {
+    // Di Vercel environment read-only, fallback ke os.tmpdir() jika perlu
   }
 
   return multer.diskStorage({

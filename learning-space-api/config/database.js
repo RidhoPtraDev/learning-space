@@ -30,9 +30,12 @@ if (isAiven) {
   }
 }
 
+const mysql2 = require('mysql2')
+
 const sequelize = dbUrl
   ? new Sequelize(dbUrl, {
       dialect: 'mysql',
+      dialectModule: mysql2,
       logging: false,
       dialectOptions
     })
@@ -44,6 +47,7 @@ const sequelize = dbUrl
         host: process.env.DB_HOST || '127.0.0.1',
         port: process.env.DB_PORT || 3306,
         dialect: 'mysql',
+        dialectModule: mysql2,
         logging: false,
         dialectOptions
       }
