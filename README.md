@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/RidhoPtraDev/learning-space/main/learning-space/src/assets/logo.png" alt="Logo LearningSpace" height="135" />
+  <img src="https://raw.githubusercontent.com/RidhoPtraDev/learning-space/main/learning-space/src/assets/logo.png" alt="Logo LearningSpace" width="130" height="130" style="border-radius: 20%;" />
   
   <h2>LearningSpace</h2>
   <p><strong>Arsitektur Pembelajaran Daring Modern untuk Pelajar Indonesia</strong></p>
