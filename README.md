@@ -9,14 +9,14 @@
 </p>
 
 <p align="center">
-  Platform ekosistem pembelajaran digital komprehensif, tangguh, dan terukur yang dirancang khusus untuk pelajar modern Indonesia. Menghadirkan modul multimedia interaktif, tatap muka daring Zoom, analitik progres belajar real-time, serta sistem pengingat otomatis.
-</p>
-
-<p align="center">
   <a href="https://learning-space-user.vercel.app"><img src="https://img.shields.io/badge/Platform-Web%20(Vercel)-0066FF?style=flat-square&logo=vercel&logoColor=white" alt="Platform"></a>
   <a href="https://react.dev"><img src="https://img.shields.io/badge/Frontend-React%2019%20%2F%20Vite%208-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React"></a>
   <a href="https://nodejs.org"><img src="https://img.shields.io/badge/Backend-Node.js%20Express-339933?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js"></a>
+  <a href="https://sequelize.org"><img src="https://img.shields.io/badge/ORM-Sequelize%20v6-52B0E7?style=flat-square&logo=sequelize&logoColor=white" alt="Sequelize"></a>
   <a href="https://aiven.io"><img src="https://img.shields.io/badge/Database-Aiven%20MySQL%208.4-FF3E00?style=flat-square&logo=mysql&logoColor=white" alt="MySQL"></a>
+  <a href="https://jwt.io"><img src="https://img.shields.io/badge/Security-JWT%20%2B%20BCrypt-red?style=flat-square&logo=jsonwebtokens&logoColor=white" alt="JWT"></a>
+  <a href="https://nodemailer.com"><img src="https://img.shields.io/badge/Email-Gmail%20SMTP%20OTP-EA4335?style=flat-square&logo=gmail&logoColor=white" alt="SMTP"></a>
+  <a href="https://vercel.com"><img src="https://img.shields.io/badge/Deployment-Vercel%20Edge%20Network-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel"></a>
   <a href="#-lisensi-license"><img src="https://img.shields.io/badge/License-MIT-yellow?style=flat-square" alt="License"></a>
 </p>
 
