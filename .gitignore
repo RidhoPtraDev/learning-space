@@ -70,3 +70,4 @@ coverage/
 *.tgz
 *.zip
 package-lock.json
+.vercel
