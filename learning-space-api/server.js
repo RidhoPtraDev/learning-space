@@ -50,20 +50,29 @@ app.use('/api/reminder', require('./routes/reminderRoutes'))
 
 const PORT = process.env.PORT || 5000
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server jalan di port ${PORT}`)
-  
-  sequelize.authenticate()
-    .then(() => {
-      console.log('✅ Database terkoneksi')
-      return sequelize.sync()
-    })
-    .then(() => {
-      console.log('✅ Semua tabel ter-sync')
-    })
-    .catch((err) => {
-      console.error('❌ Database error:', err.message)
-    })
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server jalan di port ${PORT}`)
+    
+    sequelize.authenticate()
+      .then(() => {
+        console.log('✅ Database terkoneksi')
+        return sequelize.sync()
+      })
+      .then(() => {
+        console.log('✅ Semua tabel ter-sync')
+      })
+      .catch((err) => {
+        console.error('❌ Database error:', err.message)
+      })
 
-  verifySMTP().catch(err => console.error('SMTP verify error:', err.message))
-})
+    verifySMTP().catch(err => console.error('SMTP verify error:', err.message))
+  })
+} else {
+  // Jalankan autentikasi database saat cold start di Vercel Serverless
+  sequelize.authenticate()
+    .then(() => sequelize.sync())
+    .catch((err) => console.error('❌ Vercel DB sync error:', err.message))
+}
+
+module.exports = app

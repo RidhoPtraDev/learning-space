@@ -18,7 +18,13 @@ const dialectOptions = {
   connectTimeout: 30000
 }
 
-if (process.env.DB_SSL === 'true') {
+const isAiven = Boolean(
+  process.env.DB_SSL === 'true' ||
+  (process.env.DB_HOST && process.env.DB_HOST.includes('aivencloud.com')) ||
+  (dbUrl && dbUrl.includes('aivencloud.com'))
+)
+
+if (isAiven) {
   dialectOptions.ssl = {
     rejectUnauthorized: false
   }
