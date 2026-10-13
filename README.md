@@ -111,50 +111,6 @@ Pengembangan repositori ini dikelola secara terstruktur melalui cabang kerja ter
 
 ---
 
-## 🚀 Panduan Memulai (Getting Started)
-
-### Prasyarat (Prerequisites)
-* Node.js versi 18.x ke atas (Direkomendasikan versi 20 LTS atau 22).
-* npm (Node Package Manager).
-* Git terpasang di sistem.
-* Basis data MySQL (XAMPP untuk lingkungan offline, atau cloud Aiven MySQL).
-
-### Instalasi & Setup Lokal
-
-1. **Clone Repository:**
-   ```bash
-   git clone https://github.com/RidhoPtraDev/learning-space.git
-   cd learning-space
-   ```
-
-2. **Setup & Jalankan Backend API:**
-   ```bash
-   cd learning-space-api
-   npm install
-   cp .env.example .env
-   # Sesuaikan kredensial basis data pada file .env
-   npm run dev
-   ```
-   > Layanan API aktif di: `http://localhost:5000`
-
-3. **Setup & Jalankan Portal Pengguna:**
-   ```bash
-   cd ../learning-space
-   npm install
-   npm run dev
-   ```
-   > Aplikasi pengguna aktif di: `http://localhost:5173`
-
-4. **Setup & Jalankan Dasbor Admin:**
-   ```bash
-   cd ../learning-space-admin
-   npm install
-   npm run dev
-   ```
-   > Dasbor admin aktif di: `http://localhost:5174`
-
----
-
 ## 🔒 Standar Keamanan & Reliabilitas (Security & Reliability)
 
 * **Enkripsi Kredensial (Zero-Plaintext)**: Seluruh kata sandi dienkripsi menggunakan `bcryptjs` sebelum disimpan ke basis data.
